@@ -8,7 +8,6 @@
 
 body {
   margin: 0;
-
   background-color: #cce2cb;
 }
 
@@ -19,4 +18,28 @@ h1 {
   font-family: "ONE-Mobile-POP";
   background-color: #cbaacb;
   color: #fffff0;
+}
+
+section {
+  display: flex;
+  width: 100%;
+  height: 25rem;
+
+  /* 가로 스크롤 구현 */
+  overflow: auto;
+  white-space: nowrap;
+}
+
+section > div {
+  display: flex;
+  margin: 1rem;
+
+  /* flex를 줘야만 적용가능 */
+  gap: 1rem;
+}
+
+/* section 하위의 img 태그에만 적용 */
+div > img {
+  width: 25rem;
+  height: 25rem;
 }
