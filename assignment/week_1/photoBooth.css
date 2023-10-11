@@ -12,9 +12,11 @@ html {
 }
 
 body {
+  position: relative;
+  height: 100vh;
   margin: 0;
-  background-color: #cce2cb;
 
+  background-color: #cce2cb;
   font-family: "ONE-Mobile-POP";
 }
 
@@ -60,7 +62,7 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 3rem 1rem;
+  margin: 3rem 7rem;
   padding: 1.5rem;
 
   border: 0.5rem solid #ffffb5;
@@ -98,7 +100,7 @@ a:hover {
   display: flex;
   flex-direction: column;
   height: auto;
-  margin: 1rem;
+  margin: 3rem 7rem;
 
   border: 0.3rem solid #2d4849;
   text-align: center;
@@ -241,11 +243,30 @@ article > div {
 
 /* 4. 푸터 */
 footer {
+  position: absolute;
+  left: 0;
+  right: 0;
   text-align: center;
   padding: 3rem;
-  margin-top: 7rem;
+  margin-top: 3rem;
 
   font-size: 2rem;
   color: #fffff0;
   background-color: #cbaacb;
+}
+
+/* 5. 상단이동 버튼 */
+span {
+  padding-top: 0.3rem;
+  position: sticky;
+  float: right;
+  right: 2rem;
+  bottom: 3rem;
+
+  border-radius: 3rem;
+  border: solid 0.2rem;
+
+  text-align: center;
+  font-size: 2.5rem;
+  background-color: #fffff0;
 }
