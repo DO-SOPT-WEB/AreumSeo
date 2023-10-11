@@ -108,6 +108,8 @@ h3 {
 
   color: #fffff0;
   background-color: #2d4849;
+
+  z-index: 1;
 }
 
 #animalSection > article {
@@ -124,10 +126,43 @@ h3 {
 #animalSection > article > img {
   width: 17rem;
   height: 17rem;
+  /* 마지막 줄의 개수가 맞지 않는 경우 화면 비율에 맞게 이미지 너비 늘어남 */
+  flex-grow: 1;
+}
+
+#foodSection > article {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0rem;
+  width: 100%;
+
+  gap: 1rem;
+}
+
+article > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 50%;
+  height: auto;
+
+  gap: 1rem;
+}
+
+.left > img {
+  width: 25rem;
+  height: auto;
+  flex-grow: 1;
+}
+
+.right > img {
+  width: 17rem;
+  height: 18.5rem;
+  flex-grow: 1;
 }
 
 #animalSection > article > img:hover,
-#foodSection > article > img:hover {
+#foodSection > article > div > img:hover {
   /* 즉시 0.2초동안 일정한 속도로 부드럽게 변화 */
   transition: all 0.2s linear;
   /* 위로 0.5rem 이동 */
