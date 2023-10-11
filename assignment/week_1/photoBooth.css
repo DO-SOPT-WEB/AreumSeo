@@ -183,6 +183,7 @@ article > div {
   height: 100vh;
   margin: 1rem 0rem;
 
+  /* 전체 화면에 grid를 깔아줌 (4행 6열)*/
   grid-template-rows: repeat(4, 1fr);
   grid-template-columns: repeat(6, 1fr);
 
@@ -196,8 +197,10 @@ article > div {
 
 #friendsSection > article > img:nth-child(1) {
   width: 100%;
+  /* 높이에 할당된 전체 화면의 1/4 크기 할당*/
   height: calc(100vh / 4);
 
+  /* 화면 분할해놓은 곳의 좌표를 기준으로 해당 요소의 위치 잡아줌 */
   grid-row: 1 / 2;
   grid-column: 1 / 4;
 }
