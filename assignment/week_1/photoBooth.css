@@ -19,7 +19,8 @@ body {
 }
 
 h1 {
-  padding: 1.5rem;
+  text-align: center;
+  padding: 2rem;
   margin: 0;
 
   background-color: #cbaacb;
@@ -31,6 +32,7 @@ h1 {
   display: flex;
   width: 100%;
   height: 25rem;
+  margin-top: 2rem;
 
   /* 가로 스크롤만 가능하게 */
   overflow-x: scroll;
@@ -198,7 +200,7 @@ article > div {
 #friendsSection > article > img:nth-child(1) {
   width: 100%;
   /* 높이에 할당된 전체 화면의 1/4 크기 할당*/
-  height: calc(100vh / 4);
+  height: calc(100vh / 4 - 0.5rem);
 
   /* 화면 분할해놓은 곳의 좌표를 기준으로 해당 요소의 위치 잡아줌 */
   grid-row: 1 / 2;
@@ -207,7 +209,7 @@ article > div {
 
 #friendsSection > article > img:nth-child(2) {
   width: 100%;
-  height: calc(100vh / 4);
+  height: calc(100vh / 4 - 0.5rem);
 
   grid-row: 2 / 3;
   grid-column: 1 / 4;
@@ -215,7 +217,7 @@ article > div {
 
 #friendsSection > article > img:nth-child(3) {
   width: 100%;
-  height: calc(100vh / 2);
+  height: calc(100vh / 2 - 0.5rem);
 
   grid-row: 1 / 3;
   grid-column: 4 / 7;
@@ -223,7 +225,7 @@ article > div {
 
 #friendsSection > article > img:nth-child(4) {
   width: 100%;
-  height: calc(100vh / 2);
+  height: calc(100vh / 2 - 0.5rem);
 
   grid-row: 4 / 5;
   grid-column: 1 / 5;
@@ -231,8 +233,19 @@ article > div {
 
 #friendsSection > article > img:nth-child(5) {
   width: 100%;
-  height: calc(100vh / 2);
+  height: calc(100vh / 2 - 0.5rem);
 
   grid-row: 4 / 5;
   grid-column: 5 / 7;
+}
+
+/* 4. 푸터 */
+footer {
+  text-align: center;
+  padding: 3rem;
+  margin-top: 7rem;
+
+  font-size: 2rem;
+  color: #fffff0;
+  background-color: #cbaacb;
 }
