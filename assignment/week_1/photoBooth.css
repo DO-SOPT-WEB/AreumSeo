@@ -125,3 +125,11 @@ h3 {
   width: 17rem;
   height: 17rem;
 }
+
+#animalSection > article > img:hover,
+#foodSection > article > img:hover {
+  /* 즉시 0.2초동안 일정한 속도로 부드럽게 변화 */
+  transition: all 0.2s linear;
+  /* 위로 0.5rem 이동 */
+  transform: translateY(-0.5rem);
+}
