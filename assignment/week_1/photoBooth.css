@@ -6,6 +6,11 @@
   font-style: normal;
 }
 
+/* a 태그 클릭 시, 부드럽게 이동 */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   background-color: #cce2cb;
