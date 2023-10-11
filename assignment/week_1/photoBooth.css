@@ -26,6 +26,7 @@ h1 {
   color: #fffff0;
 }
 
+/* 1. 미리보기 섹션 */
 #prevSection {
   display: flex;
   width: 100%;
@@ -52,6 +53,7 @@ section > ul > li > img {
   height: 25rem;
 }
 
+/* 2. 목차 구현 */
 nav {
   display: flex;
   flex-direction: column;
@@ -87,6 +89,7 @@ a:hover {
   text-decoration: underline;
 }
 
+/* 3. 사진첩 섹션 */
 #animalSection,
 #foodSection,
 #friendsSection {
@@ -112,6 +115,15 @@ h3 {
   z-index: 1;
 }
 
+#animalSection > article > img:hover,
+#foodSection > article > div > img:hover {
+  /* 즉시 0.2초동안 일정한 속도로 부드럽게 변화 */
+  transition: all 0.2s linear;
+  /* 위로 0.5rem 이동 */
+  transform: translateY(-0.5rem);
+}
+
+/* 3-1. 첫번째 섹션 */
 #animalSection > article {
   display: flex;
   flex-wrap: wrap;
@@ -130,6 +142,7 @@ h3 {
   flex-grow: 1;
 }
 
+/* 3-2. 두번째 섹션 */
 #foodSection > article {
   display: flex;
   align-items: center;
@@ -159,12 +172,4 @@ article > div {
   width: 17rem;
   height: 18.5rem;
   flex-grow: 1;
-}
-
-#animalSection > article > img:hover,
-#foodSection > article > div > img:hover {
-  /* 즉시 0.2초동안 일정한 속도로 부드럽게 변화 */
-  transition: all 0.2s linear;
-  /* 위로 0.5rem 이동 */
-  transform: translateY(-0.5rem);
 }
