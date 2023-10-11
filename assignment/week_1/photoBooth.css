@@ -71,3 +71,14 @@ nav > ul {
 nav > ul > li {
   padding: 0rem 0.7rem;
 }
+
+a,
+a:visited {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  color: #cbaacb;
+  text-decoration: underline;
+}
