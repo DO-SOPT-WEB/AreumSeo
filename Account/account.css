@@ -89,7 +89,7 @@ h2 {
 }
 
 div > p {
-  margin:  0.5rem;
+  margin: 0.5rem;
 }
 
 /* 수입, 지출 내역 */
@@ -169,7 +169,7 @@ ul {
   width: 100%;
 
   /* 높이를 설정해줘야 스크롤 생김 */
-  height: 35vh;
+  height: 33vh;
   overflow-y: auto;
 
   list-style: none;
@@ -190,13 +190,23 @@ li {
 .category {
   margin-left: 2rem;
   margin-right: 1.5rem;
+
+  /* 줄바꿈 금지 */
+  white-space: nowrap;
 }
 
 .place {
+  /* 말 줄임표 생성 */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
+
   font-weight: bold;
 }
 
 .history {
+  margin-left: 1rem;
   margin-right: 2rem;
   flex-grow: 1;
 
