@@ -139,9 +139,25 @@ div > p {
 }
 
 #accountSection > article > header > p,
-#accountSection > article > header > form {
+form {
   /* 마진: 위 왼+오른쪽 아래 */
-  margin: -0.5rem 2.5rem 1rem;
+  margin: -0.5rem 1.5rem 1rem;
+}
+
+/* 체크박스 숨기기 */
+input {
+  display: none;
+}
+
+label {
+  padding: 0 0.5rem;
+
+  border: 0.2rem solid #b1d3c5;
+  border-radius: 0.5rem;
+}
+
+input:checked + label {
+  background-color: #b1d3c5;
 }
 
 /* 상세 내역 */
@@ -207,21 +223,21 @@ li {
 
 /* 하단 추가 버튼 */
 footer {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 0.3rem 0;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.3rem 0;
 
-    text-align: center;
-    background-color: #b1d3c5;
+  text-align: center;
+  background-color: #b1d3c5;
 }
 
 footer > button {
-    padding: 0.7rem 0.9rem;
-    border-radius: 5rem;
-    border: solid #fffff0;
+  padding: 0.7rem 0.9rem;
+  border-radius: 5rem;
+  border: solid #fffff0;
 
-    background-color: #fffff0;
-    font-size: 1.7rem;
+  background-color: #fffff0;
+  font-size: 1.7rem;
 }
