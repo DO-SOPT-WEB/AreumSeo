@@ -34,7 +34,7 @@ body {
   justify-content: center;
   align-items: center;
   width: calc(100% - 5rem);
-  margin: 2rem 1rem;
+  margin: 1rem;
 
   border-radius: 3rem;
   border: 0.3rem solid #424436;
@@ -89,7 +89,7 @@ h2 {
 }
 
 div > p {
-  margin: 1rem 0.5rem;
+  margin:  0.5rem;
 }
 
 /* 수입, 지출 내역 */
@@ -107,7 +107,7 @@ div > p {
 
 #accountSection > header {
   display: flex;
-  margin: -1rem 0;
+  margin: -1.5rem 0;
 
   font-size: 2rem;
 
@@ -178,6 +178,8 @@ ul {
 
 li {
   display: flex;
+  align-items: center;
+  height: 3.5rem;
   margin: 0.2rem 1rem;
   position: relative;
   border-radius: 1rem;
