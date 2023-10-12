@@ -1,0 +1,89 @@
+@font-face {
+  font-family: "Uiyeun";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105@1.1/Uiyeun.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+
+  font-family: "Uiyeun";
+}
+
+#mainHeader {
+  width: 100%;
+  border-bottom: 0.2rem solid #424436;
+
+  text-align: center;
+  background-color: #daeaf6;
+}
+
+#assetSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: calc(100% - 5rem);
+  margin: 2rem 1rem;
+
+  border-radius: 3rem;
+  border: 0.3rem solid #424436;
+
+  background-color: #daeaf6;
+}
+
+h2 {
+  margin: 0.5rem;
+}
+
+#assetSection > article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.assetValue {
+  margin: 0;
+
+  font-size: 3.5rem;
+}
+
+#detailContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  font-size: 1.7rem;
+
+  gap: 2rem;
+}
+
+#plusContainer {
+  display: flex;
+  
+  color: blue;
+}
+
+#minusContainer {
+    display: flex;
+
+    color: red;
+}
+
+.detailSign {
+    padding: 0.1rem 0.3rem;
+    border-radius: 3rem;
+    background-color: #fffff0;
+}
+
+div > p {
+  margin: 1rem 0.5rem;
+}
