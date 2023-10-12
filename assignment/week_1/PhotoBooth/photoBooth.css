@@ -174,10 +174,7 @@ article > div {
   flex-grow: 1;
 }
 
-#foodSection > article > .right > img:nth-child(1),
-#foodSection > article > .right > img:nth-child(2),
-#foodSection > article > .right > img:nth-child(3),
-#foodSection > article > .right > img:nth-child(4) {
+#foodSection > article > .right > img {
   width: 17rem;
   height: 17rem;
   flex-grow: 1;
