@@ -138,7 +138,7 @@ div > p {
 #accountSection > article > header > p,
 #accountSection > article > header > form {
   /* 마진: 위 왼+오른쪽 아래 */
-  margin: -0.5rem 2rem 1rem;
+  margin: -0.5rem 2.5rem 1rem;
 }
 
 /* 상세 내역 */
@@ -156,13 +156,14 @@ ul {
 li {
   display: flex;
   margin: 0.2rem 1rem;
+  position: relative;
   border-radius: 1rem;
 
   background-color: #daeaf6;
 }
 
 .category {
-  margin-left: 1.5rem;
+  margin-left: 2rem;
   margin-right: 1.5rem;
 }
 
@@ -171,11 +172,22 @@ li {
 }
 
 .history {
-  margin-right: 1.5rem;
+  margin-right: 2rem;
   flex-grow: 1;
 
   text-align: right;
   font-weight: bold;
+}
+
+.history::after {
+    content: "x";
+    position: absolute;
+    top: -0.5rem;
+    right: 1rem;
+
+    color: #424436;
+    font-size: 2.5rem;
+
 }
 
 .income {
