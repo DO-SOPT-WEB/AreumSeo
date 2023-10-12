@@ -12,6 +12,9 @@ body {
   align-items: center;
   justify-content: center;
   margin: 0;
+  /* 전체화면 스크롤 막기 */
+  overflow: hidden;
+  touch-action: none;
 
   font-family: "Uiyeun";
 }
@@ -149,6 +152,10 @@ ul {
   margin: 0;
   width: 100%;
 
+  /* 높이를 설정해줘야 스크롤 생김 */
+  height: 35vh;
+  overflow-y: auto;
+
   list-style: none;
   font-size: 1.5rem;
 }
@@ -179,15 +186,15 @@ li {
   font-weight: bold;
 }
 
+/* x 버튼 추가 */
 .history::after {
-    content: "x";
-    position: absolute;
-    top: -0.5rem;
-    right: 1rem;
+  content: "x";
+  position: absolute;
+  top: -0.5rem;
+  right: 1rem;
 
-    color: #424436;
-    font-size: 2.5rem;
-
+  color: #424436;
+  font-size: 2.5rem;
 }
 
 .income {
