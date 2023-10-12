@@ -129,6 +129,7 @@ div > p {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 0.5rem;
   width: 100%;
 
   border-bottom: 0.07rem solid #424436;
@@ -137,5 +138,50 @@ div > p {
 #accountSection > article > header > p,
 #accountSection > article > header > form {
   /* 마진: 위 왼+오른쪽 아래 */
-  margin: -0.5rem 3rem 1rem;
+  margin: -0.5rem 2rem 1rem;
+}
+
+/* 상세 내역 */
+ul {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  margin: 0;
+  width: 100%;
+
+  list-style: none;
+  font-size: 1.5rem;
+}
+
+li {
+  display: flex;
+  margin: 0.2rem 1rem;
+  border-radius: 1rem;
+
+  background-color: #daeaf6;
+}
+
+.category {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.place {
+  font-weight: bold;
+}
+
+.history {
+  margin-right: 1.5rem;
+  flex-grow: 1;
+
+  text-align: right;
+  font-weight: bold;
+}
+
+.income {
+  color: blue;
+}
+
+.expenses {
+  color: red;
 }
