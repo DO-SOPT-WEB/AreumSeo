@@ -150,6 +150,7 @@ h3 {
 }
 
 #animalSection > article > img:hover,
+.imgContainer:hover,
 #foodSection > article > div > img:hover {
   /* 즉시 0.2초동안 일정한 속도로 부드럽게 변화 */
   transition: all 0.2s linear;
@@ -169,16 +170,61 @@ h3 {
   gap: 1rem;
 }
 
-#animalSection > article > img {
+.imgContainer {
+  position: relative;
   width: 17rem;
   height: 17rem;
+}
+
+/* 사진 설명 글 */
+.description {
+  position: absolute;
+  top: 2.5rem;
+  left: 2.5rem;
+  right: 2.5rem;
+  color: white;
+
+  z-index: 2;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.detail {
+  /* 단어 별 줄바꿈 */
+  word-break: keep-all;
+}
+
+.imgContainer::after,
+.description {
+  display: none;
+}
+
+.imgContainer:hover::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  /* 이미지 호버 시, 어둡게 */
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 1;
+}
+
+.imgContainer > img {
+  width: 100%;
+  height: 100%;
   /* 마지막 줄의 개수가 맞지 않는 경우 화면 비율에 맞게 이미지 너비 늘어남 */
   flex-grow: 1;
 }
 
-/* 이미지 호버 시, 어둡게 */
-#animalSection > article > img:hover {
-  filter: brightness(0.3);
+/* 각 이미지 호버 시 display: block으로 변경 */
+.imgContainer:hover::after,
+.imgContainer:hover > .description {
+  display: block;
 }
 
 /* 3-2. 두번째 섹션 */
