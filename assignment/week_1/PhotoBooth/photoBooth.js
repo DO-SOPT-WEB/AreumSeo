@@ -21,6 +21,4 @@ prevRightBtn.addEventListener("click", () => {
 document.addEventListener("scroll", () => {
   // 수식을 활용하여 스크롤 시 투명도 값을 조절해줌
   goTopBtn.style.opacity = window.scrollY / homeHeight / 50;
-
-  console.log(window.scrollY / homeHeight / 50);
 });
