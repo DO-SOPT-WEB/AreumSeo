@@ -56,7 +56,7 @@ section > button {
   height: 5rem;
 
   border: none;
-  background:transparent;
+  background: transparent;
 
   color: #cbaacb;
   font-size: 3rem;
@@ -174,6 +174,11 @@ h3 {
   height: 17rem;
   /* 마지막 줄의 개수가 맞지 않는 경우 화면 비율에 맞게 이미지 너비 늘어남 */
   flex-grow: 1;
+}
+
+/* 이미지 호버 시, 어둡게 */
+#animalSection > article > img:hover {
+  filter: brightness(0.3);
 }
 
 /* 3-2. 두번째 섹션 */
