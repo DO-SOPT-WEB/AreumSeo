@@ -1,0 +1,255 @@
+@font-face {
+  font-family: "Uiyeun";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105@1.1/Uiyeun.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  /* 전체화면 스크롤 막기 */
+  overflow: hidden;
+  touch-action: none;
+
+  font-family: "Uiyeun";
+}
+
+#mainHeader {
+  width: 100%;
+  border-bottom: 0.2rem solid #424436;
+
+  text-align: center;
+  background-color: #daeaf6;
+}
+
+/* 나의 자산 */
+#assetSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: calc(100% - 5rem);
+  margin: 1rem;
+
+  border-radius: 3rem;
+  border: 0.3rem solid #424436;
+
+  background-color: #daeaf6;
+}
+
+h2 {
+  margin: 0.5rem;
+}
+
+#assetSection > article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.assetValue {
+  margin: 0;
+
+  font-size: 3.5rem;
+}
+
+#detailContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  font-size: 1.7rem;
+
+  gap: 2rem;
+}
+
+#plusContainer {
+  display: flex;
+
+  color: blue;
+}
+
+#minusContainer {
+  display: flex;
+
+  color: red;
+}
+
+.detailSign {
+  padding: 0.1rem 0.3rem;
+  border-radius: 3rem;
+  background-color: #fffff0;
+}
+
+div > p {
+  margin: 0.5rem;
+}
+
+/* 수입, 지출 내역 */
+#accountSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  border-top: 0.2rem solid #424436;
+
+  font-size: 1.3rem;
+}
+
+#accountSection > header {
+  display: flex;
+  margin: -1.5rem 0;
+
+  font-size: 2rem;
+
+  gap: 0.7rem;
+}
+
+#accountSection > header > button {
+  border: 0;
+  background-color: transparent;
+}
+
+#accountSection > article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  width: 100%;
+}
+
+#accountSection > article > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  width: 100%;
+
+  border-bottom: 0.07rem solid #424436;
+}
+
+#accountSection > article > header > p,
+form {
+  /* 마진: 위 왼+오른쪽 아래 */
+  margin: -0.5rem 1.5rem 1rem;
+}
+
+/* 체크박스 숨기기 */
+input {
+  display: none;
+}
+
+label {
+  padding: 0 0.5rem;
+
+  border: 0.2rem solid #b1d3c5;
+  border-radius: 0.5rem;
+}
+
+input:checked + label {
+  background-color: #b1d3c5;
+}
+
+/* 상세 내역 */
+ul {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  margin: 0;
+  width: 100%;
+
+  /* 높이를 설정해줘야 스크롤 생김 */
+  height: 33vh;
+  overflow-y: auto;
+
+  list-style: none;
+  font-size: 1.5rem;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  height: 3.5rem;
+  margin: 0.2rem 1rem;
+  position: relative;
+  border-radius: 1rem;
+
+  background-color: #daeaf6;
+}
+
+.category {
+  margin-left: 2rem;
+  margin-right: 1.5rem;
+
+  /* 줄바꿈 금지 */
+  white-space: nowrap;
+}
+
+.place {
+  /* 말 줄임표 생성 */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
+
+  font-weight: bold;
+}
+
+.history {
+  margin-left: 1rem;
+  margin-right: 2rem;
+  flex-grow: 1;
+
+  text-align: right;
+  font-weight: bold;
+}
+
+/* x 버튼 추가 */
+.history::after {
+  content: "x";
+  position: absolute;
+  top: -0.5rem;
+  right: 1rem;
+
+  color: #424436;
+  font-size: 2.5rem;
+}
+
+.income {
+  color: blue;
+}
+
+.expenses {
+  color: red;
+}
+
+/* 하단 추가 버튼 */
+footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.3rem 0;
+
+  text-align: center;
+  background-color: #b1d3c5;
+}
+
+footer > button {
+  padding: 0.7rem 0.9rem;
+  border-radius: 5rem;
+  border: solid #fffff0;
+
+  background-color: #fffff0;
+  font-size: 1.7rem;
+}
