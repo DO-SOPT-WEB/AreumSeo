@@ -1,0 +1,274 @@
+@font-face {
+  font-family: "ONE-Mobile-POP";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-POP.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* a 태그 클릭 시, 부드럽게 이동 */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  position: relative;
+  height: 100vh;
+  margin: 0;
+
+  background-color: #cce2cb;
+  font-family: "ONE-Mobile-POP";
+}
+
+h1 {
+  text-align: center;
+  padding: 2rem;
+  margin: 0;
+
+  background-color: #cbaacb;
+  color: #fffff0;
+}
+
+/* 1. 미리보기 섹션 */
+#prevSection {
+  display: flex;
+  width: 100%;
+  height: 25rem;
+  margin-top: 2rem;
+
+  /* 가로 스크롤만 가능하게 */
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+section > ul {
+  display: flex;
+  margin: 1rem;
+  padding-left: 0;
+
+  /* flex를 줘야만 적용가능 */
+  gap: 1rem;
+}
+
+/* section 하위의 img 태그에만 적용 */
+section > ul > li > img {
+  width: 25rem;
+  height: 25rem;
+}
+
+/* 2. 목차 구현 */
+nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 3rem 7rem;
+  padding: 1.5rem;
+
+  border: 0.5rem solid #ffffb5;
+  text-align: center;
+}
+
+nav > ul {
+  display: flex;
+  justify-content: center;
+  padding-left: 0;
+
+  list-style: none;
+  font-size: 1.5rem;
+}
+
+nav > ul > li {
+  padding: 0rem 0.7rem;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+  color: black;
+}
+
+nav > ul > li > a:hover {
+  color: #cbaacb;
+  text-decoration: underline;
+}
+
+/* 3. 사진첩 섹션 */
+#animalSection,
+#foodSection,
+#friendsSection {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  margin: 3rem 7rem;
+
+  border: 0.3rem solid #2d4849;
+  text-align: center;
+}
+
+h3 {
+  /* sticky는 부모요소 안에서만 동작하는데, 이때 부모태그에 높이가 설정되어 있지 않으면 동작 X */
+  position: sticky;
+  top: 0;
+  margin: 0;
+  padding: 1rem;
+
+  color: #fffff0;
+  background-color: #2d4849;
+
+  z-index: 1;
+}
+
+#animalSection > article > img:hover,
+#foodSection > article > div > img:hover {
+  /* 즉시 0.2초동안 일정한 속도로 부드럽게 변화 */
+  transition: all 0.2s linear;
+  /* 위로 0.5rem 이동 */
+  transform: translateY(-0.5rem);
+}
+
+/* 3-1. 첫번째 섹션 */
+#animalSection > article {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0rem;
+  width: 100%;
+
+  gap: 1rem;
+}
+
+#animalSection > article > img {
+  width: 17rem;
+  height: 17rem;
+  /* 마지막 줄의 개수가 맞지 않는 경우 화면 비율에 맞게 이미지 너비 늘어남 */
+  flex-grow: 1;
+}
+
+/* 3-2. 두번째 섹션 */
+#foodSection > article {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 1rem 0rem;
+
+  gap: 1rem;
+}
+
+article > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 35rem;
+  flex-grow: 1;
+
+  gap: 1rem;
+}
+
+#foodSection > article > .left > img {
+  width: 100%;
+  height: 35rem;
+  flex-grow: 1;
+}
+
+#foodSection > article > .right > img {
+  width: 17rem;
+  height: 17rem;
+  flex-grow: 1;
+}
+
+/* 3-3. 세번째 섹션 */
+#friendsSection > article {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  margin: 1rem 0rem;
+
+  /* 전체 화면에 grid를 깔아줌 (4행 6열)*/
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(6, 1fr);
+
+  gap: 0.5rem;
+}
+
+#friendsSection > article > img {
+  width: 10rem;
+  height: 10rem;
+}
+
+#friendsSection > article > img:nth-child(1) {
+  width: 100%;
+  /* 높이에 할당된 전체 화면의 1/4 크기 할당*/
+  height: calc(100vh / 4 - 0.5rem);
+
+  /* 화면 분할해놓은 곳의 좌표를 기준으로 해당 요소의 위치 잡아줌 */
+  grid-row: 1 / 2;
+  grid-column: 1 / 4;
+}
+
+#friendsSection > article > img:nth-child(2) {
+  width: 100%;
+  height: calc(100vh / 4 - 0.5rem);
+
+  grid-row: 2 / 3;
+  grid-column: 1 / 4;
+}
+
+#friendsSection > article > img:nth-child(3) {
+  width: 100%;
+  height: calc(100vh / 2 - 0.5rem);
+
+  grid-row: 1 / 3;
+  grid-column: 4 / 7;
+}
+
+#friendsSection > article > img:nth-child(4) {
+  width: 100%;
+  height: calc(100vh / 2 - 0.5rem);
+
+  grid-row: 4 / 5;
+  grid-column: 1 / 5;
+}
+
+#friendsSection > article > img:nth-child(5) {
+  width: 100%;
+  height: calc(100vh / 2 - 0.5rem);
+
+  grid-row: 4 / 5;
+  grid-column: 5 / 7;
+}
+
+/* 4. 푸터 */
+footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 3rem;
+  margin-top: 3rem;
+
+  font-size: 2rem;
+  color: #fffff0;
+  background-color: #cbaacb;
+}
+
+/* 5. 상단이동 버튼 */
+button {
+  padding-top: 0.3rem;
+  position: sticky;
+  float: right;
+  right: 2rem;
+  bottom: 3rem;
+
+  border-radius: 3rem;
+  border: solid 0.2rem;
+
+  text-align: center;
+  font-size: 2.5rem;
+  background-color: #fffff0;
+}
