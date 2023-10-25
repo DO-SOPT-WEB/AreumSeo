@@ -71,9 +71,22 @@
     <div class="modal add">
       <div class="bottomModal">
         <p class="bottomModalTitle">내역 추가</p>
-        <div class="bottomModalBtnContainer">
-          <button class="incomeBtn">수입</button>
-          <button class="expensesBtn">지출</button>
+        <div class="checkdInputContainer">
+          <input
+            type="checkbox"
+            name="income"
+            value="income"
+            id="modalIncomeBox"
+            class="modalInput"
+          />
+          <label for="modalIncomeBox" class="modalInputLabel">수입</label>
+          <input
+            type="checkbox"
+            name="expenses"
+            value="expenses"
+            id="modalExpensesBtn"
+            class="modalInput"
+          /><label for="modalExpensesBtn" class="modalInputLabel">지출</label>
         </div>
 
         <div class="addContainer">
@@ -83,12 +96,12 @@
 
         <div class="addContainer">
           <p class="additionalPrice">금액</p>
-          <input type="number" class="priceInput" />
+          <input type="number" class="additionalInput price" />
         </div>
 
         <div class="addContainer">
           <p class="additionalContent">내용</p>
-          <input type="text" class="contentInput" />
+          <input type="text" class="additionalInput contents" />
         </div>
 
         <button class="modalBtn yellowBackground save">저장하기</button>

@@ -35,21 +35,10 @@ const expensesValue = document.querySelector(".expenses.detailValue");
 const addBtn = document.querySelector("footer button");
 const modalCloseBtn = document.querySelector(".modalBtn.close");
 
-// 리스트 추가 버튼 클릭 시 작동 함수
-addBtn.addEventListener("click", () => {
-  const footer = document.querySelector("footer");
-  const modal = document.querySelector(".modal.add");
-  footer.style.display = "none";
-  displayModal(modal);
-  createOptions();
-});
+const modalInput = document.querySelectorAll(".modalInput");
 
-// 하단모달 "닫기" 버튼 클릭 시 작동 함수
-modalCloseBtn.addEventListener("click", () => {
-  const footer = document.querySelector("footer");
-  const modal = document.querySelector(".modal.add");
-  footer.style.display = "block";
-  deleteModal(modal);
+modalInput.forEach((input) => {
+  checkedOnlyOne(input);
 });
 
 // 수입, 지출 내역 만들기
@@ -92,6 +81,24 @@ accountLi.forEach((li) => {
       clickedArr.push(clickedHistory.innerHTML);
     });
   });
+});
+
+// 리스트 추가 버튼 클릭 시 작동
+addBtn.addEventListener("click", () => {
+  const footer = document.querySelector("footer");
+  const modal = document.querySelector(".modal.add");
+  footer.style.display = "none";
+  displayModal(modal);
+  createOptions();
+});
+
+// 하단모달 "닫기" 버튼 클릭 시 작동
+modalCloseBtn.addEventListener("click", () => {
+  const footer = document.querySelector("footer");
+  const modal = document.querySelector(".modal.add");
+  footer.style.display = "block";
+  deleteModal(modal);
+  deleteOptions();
 });
 
 /* -------------- 함수 모음 -------------- */
@@ -183,5 +190,28 @@ function createOptions() {
     const categoryOption = document.createElement("option");
     categoryOption.innerHTML = cate;
     categorySelect.appendChild(categoryOption);
+  });
+}
+
+// 드롭다운 리스트 옵션 삭제 함수
+function deleteOptions() {
+  const categorySelect = document.querySelector(".categorySelect");
+  // replaceChildren(): 아무런 파라미터도 넘겨주지 않으면 모든 자식 노드 삭제
+  categorySelect.replaceChildren();
+}
+
+// 체크박스의 선택 가능 개수를 한 개로 제한하는 함수
+function checkedOnlyOne(input) {
+  const modalIncomeBox = document.getElementById("modalIncomeBox");
+  const modalExpensesBtn = document.getElementById("modalExpensesBtn");
+
+  input.addEventListener("click", () => {
+    if (input.checked) {
+      if (input === modalIncomeBox) {
+        modalExpensesBtn.checked = false;
+      } else if (input === modalExpensesBtn) {
+        modalIncomeBox.checked = false;
+      }
+    }
   });
 }
