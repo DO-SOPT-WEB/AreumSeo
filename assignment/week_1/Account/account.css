@@ -255,3 +255,51 @@ footer > button {
   background-color: #fffff0;
   font-size: 1.7rem;
 }
+
+/* 삭제 모달 */
+#modal {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  padding: 1rem 3rem;
+
+  border-radius: 1rem;
+  background-color: #b1d3c5;
+}
+
+.modalTitle {
+  font-size: 1.7rem;
+  font-weight: bold;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 1.5rem 1rem;
+}
+
+.btnContainer > button {
+  padding: 0.5rem 2rem;
+
+  border: none;
+  border-radius: 1rem;
+
+  font-family: "Uiyeun";
+  font-size: 1.3rem;
+}
