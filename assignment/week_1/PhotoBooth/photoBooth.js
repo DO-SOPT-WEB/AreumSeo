@@ -45,5 +45,15 @@ imgContainer.forEach((img) => {
       // "더보기" 버튼을 호버된 이미지의 설명박스(.description) 하위로 넣어줌
       descript.appendChild(moreInfoBtn);
     }
+
+    detail.style.display = "-webkit-box";
+    moreInfoBtn.style.display = "block";
   });
+});
+
+// "더보기" 버튼 클릭 시, 잘려있던 이미지 사진이 모두 보이는 기능
+moreInfoBtn.addEventListener("click", () => {
+  let detail = descript.querySelector("p.detail");
+  detail.style.display = "flex";
+  moreInfoBtn.style.display = "none";
 });
