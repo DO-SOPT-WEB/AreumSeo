@@ -24,6 +24,12 @@ let HISTORY_LIST = [
 // 최초 나의 자산
 let INIT_BALANCE = 0;
 
+const incomeValue = document.querySelector(".income.detailValue");
+const expensesValue = document.querySelector(".expenses.detailValue");
+
+let income = 0;
+let expenses = 0;
+
 // 수입, 지출 내역 만들기
 const accountArticle = document.querySelector(".accountArticle");
 const accountUl = document.createElement("ul");
@@ -53,9 +59,16 @@ HISTORY_LIST.map((list) => {
 
   // 수입인 경우, "className = income"
   // 지출인 경우, "className = expenses"
-  list.history < 0
-    ? listHistory.classList.add("expenses")
-    : listHistory.classList.add("income");
+  if (list.history < 0) {
+    listHistory.classList.add("expenses");
+    expenses += list.history;
+  } else {
+    listHistory.classList.add("income");
+    income += list.history;
+  }
+
+  incomeValue.innerHTML = income.toLocaleString();
+  expensesValue.innerHTML = Math.abs(expenses).toLocaleString();
 
   // 수입, 지출 모두 공통적으로 "history"라는 클래스 명 부여
   listHistory.classList.add("history");
@@ -82,6 +95,9 @@ accountLi.forEach((li) => {
     const listDelBtn = modal.querySelector(".listDelBtn");
     const cancelBtn = modal.querySelector(".cancelBtn");
 
+    const clickedHistory = li.querySelector(".history");
+    let clickedArr = [];
+
     // 모달이 화면에 나타남
     modal.style.display = "flex";
 
@@ -89,11 +105,25 @@ accountLi.forEach((li) => {
     listDelBtn.addEventListener("click", () => {
       modal.style.display = "none";
       li.remove();
+
+      clickedArr.push(clickedHistory.innerHTML);
+      if (clickedArr.length === 1) {
+        INIT_BALANCE -= clickedArr[0];
+
+        clickedArr[0] < 0
+          ? (expenses -= clickedArr[0])
+          : (income -= clickedArr[0]);
+      }
+
+      incomeValue.innerHTML = income.toLocaleString();
+      expensesValue.innerHTML = Math.abs(expenses).toLocaleString();
+      assetValue.innerHTML = INIT_BALANCE.toLocaleString();
     });
 
     // "취소" 클릭 시, 모달만 화면에서 사라짐
     cancelBtn.addEventListener("click", () => {
       modal.style.display = "none";
+      clickedArr.push(clickedHistory.innerHTML);
     });
   });
 });
