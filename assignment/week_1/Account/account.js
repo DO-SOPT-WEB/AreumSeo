@@ -71,3 +71,12 @@ HISTORY_LIST.map((list) => {
 accountArticle.appendChild(accountUl);
 
 assetValue.innerHTML = INIT_BALANCE.toLocaleString();
+
+// "x" 버튼 클릭 시, 리스트 삭제 기능
+const accountLi = accountUl.querySelectorAll(".accountLi");
+accountLi.forEach((li) => {
+  const delBtn = li.querySelector(".delBtn");
+  delBtn.addEventListener("click", () => {
+    li.remove();
+  });
+});
