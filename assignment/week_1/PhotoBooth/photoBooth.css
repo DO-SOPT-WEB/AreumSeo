@@ -193,6 +193,14 @@ h3 {
 }
 
 .detail {
+  /* 설명이 3줄 이상일 시, 3줄로 텍스트 제한 및 말줄임표 */
+  display: -webkit-box;
+  /* 텍스트 수직 정렬 */
+  -webkit-box-orient: vertical;
+  /* 최대 라인 수 3으로 제한 */
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+
   /* 단어 별 줄바꿈 */
   word-break: keep-all;
 }
