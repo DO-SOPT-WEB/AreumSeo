@@ -1,20 +1,24 @@
 let HISTORY_LIST = [
   {
+    id: 1,
     category: "과외비",
     place: "10월 월급",
     history: 500000,
   },
   {
+    id: 2,
     category: "식비",
     place: "닭도리탕 문정역점",
     history: -30000,
   },
   {
+    id: 3,
     category: "용돈",
     place: "용돈 획득",
     history: 100000,
   },
   {
+    id: 4,
     category: "식비",
     place: "버거킹 햄버거 단품",
     history: -10000,
