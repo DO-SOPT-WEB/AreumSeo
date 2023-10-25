@@ -32,7 +32,13 @@ const assetValue = document.querySelector(".assetValue");
 HISTORY_LIST.map((list) => {
   INIT_BALANCE += list.history;
 
-  const accountLi = document.createElement("li");
+  const createdLi = document.createElement("li");
+  createdLi.classList.add("accountLi");
+
+  const createdDelBtn = document.createElement("button");
+  createdDelBtn.innerHTML = "x";
+  createdDelBtn.classList.add("delBtn");
+
   const listCategory = document.createElement("p");
   listCategory.innerHTML = list.category;
   listCategory.classList.add("category");
@@ -51,14 +57,15 @@ HISTORY_LIST.map((list) => {
     ? listHistory.classList.add("expenses")
     : listHistory.classList.add("income");
 
-// 수입, 지출 모두 공통적으로 "history"라는 클래스 명 부여
+  // 수입, 지출 모두 공통적으로 "history"라는 클래스 명 부여
   listHistory.classList.add("history");
 
-  accountLi.appendChild(listCategory);
-  accountLi.appendChild(listPlace);
-  accountLi.appendChild(listHistory);
+  createdLi.appendChild(listCategory);
+  createdLi.appendChild(listPlace);
+  createdLi.appendChild(listHistory);
+  createdLi.appendChild(createdDelBtn);
 
-  accountUl.appendChild(accountLi);
+  accountUl.appendChild(createdLi);
 });
 
 accountArticle.appendChild(accountUl);
