@@ -32,6 +32,26 @@ let expenses = 0;
 const incomeValue = document.querySelector(".income.detailValue");
 const expensesValue = document.querySelector(".expenses.detailValue");
 
+const addBtn = document.querySelector("footer button");
+const modalCloseBtn = document.querySelector(".modalBtn.close");
+
+// 리스트 추가 버튼 클릭 시 작동 함수
+addBtn.addEventListener("click", () => {
+  const footer = document.querySelector("footer");
+  const modal = document.querySelector(".modal.add");
+  footer.style.display = "none";
+  displayModal(modal);
+  createOptions();
+});
+
+// 하단모달 "닫기" 버튼 클릭 시 작동 함수
+modalCloseBtn.addEventListener("click", () => {
+  const footer = document.querySelector("footer");
+  const modal = document.querySelector(".modal.add");
+  footer.style.display = "block";
+  deleteModal(modal);
+});
+
 // 수입, 지출 내역 만들기
 const accountArticle = document.querySelector(".accountArticle");
 const accountUl = document.createElement("ul");
@@ -51,7 +71,7 @@ accountLi.forEach((li) => {
   const delBtn = li.querySelector(".delBtn");
 
   delBtn.addEventListener("click", () => {
-    const modal = document.querySelector("#modal");
+    const modal = document.querySelector(".modal.delete");
     const listDelBtn = modal.querySelector(".listDelBtn");
     const cancelBtn = modal.querySelector(".cancelBtn");
     const clickedHistory = li.querySelector(".history");
@@ -147,4 +167,21 @@ function reflectAccount(clickedArr, clickedHistory) {
   incomeValue.innerHTML = income.toLocaleString();
   expensesValue.innerHTML = Math.abs(expenses).toLocaleString();
   assetValue.innerHTML = INIT_BALANCE.toLocaleString();
+}
+
+// 드롭다운 리스트 옵션 생성 함수
+function createOptions() {
+  const categorySelect = document.querySelector(".categorySelect");
+  let categoryArr = [];
+  HISTORY_LIST.map((list) => {
+    if (!categoryArr.includes(list.category)) {
+      categoryArr.push(list.category);
+    }
+  });
+
+  categoryArr.map((cate) => {
+    const categoryOption = document.createElement("option");
+    categoryOption.innerHTML = cate;
+    categorySelect.appendChild(categoryOption);
+  });
 }
