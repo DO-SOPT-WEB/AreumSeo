@@ -68,10 +68,37 @@
       </article>
     </section>
 
-    <footer><button type="button">✚</button></footer>
-    <script src="account.js"></script>
+    <div class="modal add">
+      <div class="bottomModal">
+        <p class="bottomModalTitle">내역 추가</p>
+        <div class="bottomModalBtnContainer">
+          <button class="incomeBtn">수입</button>
+          <button class="expensesBtn">지출</button>
+        </div>
 
-    <div id="modal">
+        <div class="addContainer">
+          <p class="additionalCategory">종류</p>
+          <select class="categorySelect"></select>
+        </div>
+
+        <div class="addContainer">
+          <p class="additionalPrice">금액</p>
+          <input type="number" class="priceInput" />
+        </div>
+
+        <div class="addContainer">
+          <p class="additionalContent">내용</p>
+          <input type="text" class="contentInput" />
+        </div>
+
+        <button class="modalBtn yellowBackground save">저장하기</button>
+        <button class="modalBtn pinkBackground close">닫기</button>
+      </div>
+    </div>
+
+    <footer><button type="button">✚</button></footer>
+
+    <div class="modal delete">
       <div class="modalContent">
         <p class="modalTitle">정말 삭제하시겠습니까?</p>
         <div class="btnContainer">
@@ -80,5 +107,6 @@
         </div>
       </div>
     </div>
+    <script src="account.js"></script>
   </body>
 </html>
