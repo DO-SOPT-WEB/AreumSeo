@@ -145,7 +145,7 @@ form {
 }
 
 /* 체크박스 숨기기 */
-input {
+form > input {
   display: none;
 }
 
@@ -329,7 +329,7 @@ footer > button {
   font-size: 1.5rem;
 }
 
-.bottomModalBtnContainer {
+.checkdInputContainer {
   display: flex;
   justify-content: center;
   width: 100%;
@@ -337,17 +337,28 @@ footer > button {
   gap: 1rem;
 }
 
-.bottomModalBtnContainer > button {
-  padding: 0 1.2rem;
+.checkdInputContainer > input {
+  display: none;
+}
 
-  font-size: 1.2rem;
-  font-family: "Uiyeun";
+.modalInputLabel {
+  padding: 0 2rem;
+  border-radius: 0.5rem;
+
+  background-color: #ecd5e3;
+  color: #000;
+}
+
+.checkdInputContainer > input:checked + .modalInputLabel {
+  background-color: #000;
+  color: #ecd5e3;
 }
 
 .categorySelect {
   text-align: center;
 
   margin-top: -0.3rem;
+  padding: 0.3rem 0;
   width: 15rem;
 
   font-size: 1.2rem;
@@ -359,16 +370,14 @@ select > option {
   font-family: "Uiyeun";
 }
 
-.priceInput,
-.contentInput {
-  display: block;
+.additionalInput {
   text-align: center;
 
   padding: 0.2rem 0;
   margin-top: -0.3rem;
   width: 15rem;
 
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-family: "Uiyeun";
 }
 
