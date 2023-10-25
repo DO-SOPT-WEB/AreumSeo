@@ -1,4 +1,4 @@
-const HISTORY_LIST = [
+let HISTORY_LIST = [
   {
     category: "과외비",
     place: "10월 월급",
@@ -76,7 +76,24 @@ assetValue.innerHTML = INIT_BALANCE.toLocaleString();
 const accountLi = accountUl.querySelectorAll(".accountLi");
 accountLi.forEach((li) => {
   const delBtn = li.querySelector(".delBtn");
+
   delBtn.addEventListener("click", () => {
-    li.remove();
+    const modal = document.querySelector("#modal");
+    const listDelBtn = modal.querySelector(".listDelBtn");
+    const cancelBtn = modal.querySelector(".cancelBtn");
+
+    // 모달이 화면에 나타남
+    modal.style.display = "flex";
+
+    // "삭제" 클릭 시, 모달이 화면에서 사라지고 "x" 버튼 클릭했던 리스트 삭제
+    listDelBtn.addEventListener("click", () => {
+      modal.style.display = "none";
+      li.remove();
+    });
+
+    // "취소" 클릭 시, 모달만 화면에서 사라짐
+    cancelBtn.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
   });
 });
