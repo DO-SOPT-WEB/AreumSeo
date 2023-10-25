@@ -149,7 +149,6 @@ h3 {
   z-index: 1;
 }
 
-#animalSection > article > img:hover,
 .imgContainer:hover,
 #foodSection > article > div > img:hover {
   /* 즉시 0.2초동안 일정한 속도로 부드럽게 변화 */
@@ -178,8 +177,13 @@ h3 {
 
 /* 사진 설명 글 */
 .description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
   position: absolute;
-  top: 2.5rem;
+  top: 2rem;
   left: 2.5rem;
   right: 2.5rem;
   color: white;
@@ -232,7 +236,22 @@ h3 {
 /* 각 이미지 호버 시 display: block으로 변경 */
 .imgContainer:hover::after,
 .imgContainer:hover > .description {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.moreInfoBtn {
+  margin-top: 0.3rem;
+  padding: 0.5rem;
+
+  border: none;
+  border-radius: 3rem;
+
+  background-color: #ffffb5;
+  font-family: "ONE-Mobile-POP";
+  font-size: 1rem;
 }
 
 /* 3-2. 두번째 섹션 */
