@@ -42,6 +42,8 @@ const checkedInputContainer = document.querySelector(".bottomModal");
 const additionalInputPrice = checkedInputContainer.querySelector(
   ".additionalInput.price"
 );
+const incomeBox = accountArticle.querySelector("#incomeBox");
+const expensesBox = accountArticle.querySelector("#expensesBox");
 
 // 수입, 지출 내역 만들기
 HISTORY_LIST.map((list) => {
@@ -80,6 +82,18 @@ accountLi.forEach((li) => {
   });
 });
 
+// 수입 필터링
+incomeBox.addEventListener("click", () => {
+  const incomeList = accountArticle.querySelectorAll(".income.history");
+  filterList(incomeBox, incomeList);
+});
+
+// 지출 필터링
+expensesBox.addEventListener("click", () => {
+  const expensesList = accountArticle.querySelectorAll(".expenses.history");
+  filterList(expensesBox, expensesList);
+});
+
 // 리스트 추가 버튼 클릭 시 작동
 addBtn.addEventListener("click", () => {
   const footer = document.querySelector("footer");
@@ -90,18 +104,7 @@ addBtn.addEventListener("click", () => {
 });
 
 // 추가 리스트 가격 입력 기능
-additionalInputPrice.addEventListener("keyup", function (e) {
-  let value = e.target.value;
-  // value를 "," 제외한 문자로 처리 -> Number로 형변환
-  value = Number(value.replaceAll(",", ""));
-  if (isNaN(value)) {
-    alert("숫자를 입력해주세요!");
-    additionalInputPrice.value = 0;
-  } else {
-    const formatValue = value.toLocaleString();
-    additionalInputPrice.value = formatValue;
-  }
-});
+additionalInputPrice.addEventListener("keyup", (e) => addList(e));
 
 // 수입과 지출 중 하나의 선택만 하도록 제한
 modalInput.forEach((input) => {
@@ -195,16 +198,6 @@ function createList(list) {
   accountUl.appendChild(createdLi);
 }
 
-// 모달을 보여주는 함수
-function displayModal(modal) {
-  modal.style.display = "flex";
-}
-
-// 모달을 화면에서 보이지 않게 하는 함수
-function deleteModal(modal) {
-  modal.style.display = "none";
-}
-
 // 수입과 지출을 화면에 띄워주는 함수
 function displayAccount(list, createdHistory) {
   // 수입인 경우, "className = income"
@@ -221,6 +214,14 @@ function displayAccount(list, createdHistory) {
   expensesValue.innerHTML = Math.abs(expenses).toLocaleString();
 }
 
+// 수입, 지출 필터링 함수
+function filterList(checkbox, notFilteredList) {
+  notFilteredList.forEach((element) => {
+    element.parentNode.style.display =
+      checkbox.checked === true ? "flex" : "none";
+  });
+}
+
 // 자산을 화면에 반영하는 함수
 function reflectAccount(clickedArr, clickedHistory) {
   clickedArr.push(clickedHistory.innerHTML);
@@ -233,6 +234,16 @@ function reflectAccount(clickedArr, clickedHistory) {
   incomeValue.innerHTML = income.toLocaleString();
   expensesValue.innerHTML = Math.abs(expenses).toLocaleString();
   assetValue.innerHTML = INIT_BALANCE.toLocaleString();
+}
+
+// 모달을 보여주는 함수
+function displayModal(modal) {
+  modal.style.display = "flex";
+}
+
+// 모달을 화면에서 보이지 않게 하는 함수
+function deleteModal(modal) {
+  modal.style.display = "none";
 }
 
 // 드롭다운 리스트 옵션 생성 함수
@@ -273,6 +284,20 @@ function checkedOnlyOne(input) {
       }
     }
   });
+}
+
+// 리스트 추가 함수
+function addList(e) {
+  let value = e.target.value;
+  // value를 "," 제외한 문자로 처리 -> Number로 형변환
+  value = Number(value.replaceAll(",", ""));
+  if (isNaN(value)) {
+    alert("숫자를 입력해주세요!");
+    additionalInputPrice.value = 0;
+  } else {
+    const formatValue = value.toLocaleString();
+    additionalInputPrice.value = formatValue;
+  }
 }
 
 // 추가 리스트를 저장하는 함수
