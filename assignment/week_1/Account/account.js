@@ -1,4 +1,4 @@
-let HISTORY_LIST = [
+const HISTORY_LIST = [
   {
     id: 1,
     category: "과외비",
@@ -31,28 +31,87 @@ let income = 0;
 let expenses = 0;
 const incomeValue = document.querySelector(".income.detailValue");
 const expensesValue = document.querySelector(".expenses.detailValue");
-
+const accountArticle = document.querySelector(".accountArticle");
+const accountUl = document.createElement("ul");
+const assetValue = document.querySelector(".assetValue");
 const addBtn = document.querySelector("footer button");
 const modalCloseBtn = document.querySelector(".modalBtn.close");
-
+const listSaveBtn = document.querySelector(".modalBtn.save");
 const modalInput = document.querySelectorAll(".modalInput");
+const checkedInputContainer = document.querySelector(".bottomModal");
+const additionalInputPrice = checkedInputContainer.querySelector(
+  ".additionalInput.price"
+);
 
+// 추가 리스트 가격 입력 기능
+additionalInputPrice.addEventListener("keyup", function (e) {
+  let value = e.target.value;
+  // value를 "," 제외한 문자로 처리 -> Number로 형변환
+  value = Number(value.replaceAll(",", ""));
+  if (isNaN(value)) {
+    alert("숫자를 입력해주세요!");
+    additionalInputPrice.value = 0;
+  } else {
+    const formatValue = value.toLocaleString();
+    additionalInputPrice.value = formatValue;
+  }
+});
+
+// 수입과 지출 중 하나의 선택만 하도록 제한
 modalInput.forEach((input) => {
   checkedOnlyOne(input);
 });
 
 // 수입, 지출 내역 만들기
-const accountArticle = document.querySelector(".accountArticle");
-const accountUl = document.createElement("ul");
-const assetValue = document.querySelector(".assetValue");
-
 HISTORY_LIST.map((list) => {
   INIT_BALANCE += list.history;
   createList(list);
 });
-
 accountArticle.appendChild(accountUl);
 assetValue.innerHTML = INIT_BALANCE.toLocaleString();
+
+// 추가 리스트 저장 버튼 클릭 시 동작
+listSaveBtn.addEventListener("click", () => {
+  const categorySelect = checkedInputContainer.querySelector("select");
+  let checkedInput = checkedInputContainer.querySelector(
+    "input[type=checkbox]:checked"
+  ).value;
+  let selectedOption =
+    categorySelect.options[categorySelect.selectedIndex].value;
+  let additionalPrice = checkedInputContainer
+    .querySelector(".additionalInput.price")
+    .value.replaceAll(",", "");
+  let additionalContents = checkedInputContainer.querySelector(
+    ".additionalInput.contents"
+  ).value;
+
+  // 수입 리스트 추가
+  if (checkedInput === "income") {
+    const newObj = {
+      id: HISTORY_LIST.length + 1,
+      category: selectedOption,
+      place: additionalContents,
+      history: Number(additionalPrice),
+    };
+
+    saveNewList(newObj);
+  }
+
+  // 지출 리스트 추가
+  else {
+    const newObj = {
+      id: HISTORY_LIST.length + 1,
+      category: selectedOption,
+      place: additionalContents,
+      history: -additionalPrice,
+    };
+
+    saveNewList(newObj);
+  }
+
+  accountArticle.appendChild(accountUl);
+  assetValue.innerHTML = INIT_BALANCE.toLocaleString();
+});
 
 // "x" 버튼 클릭 시, 리스트 삭제 기능
 const accountLi = accountUl.querySelectorAll(".accountLi");
@@ -214,4 +273,17 @@ function checkedOnlyOne(input) {
       }
     }
   });
+}
+
+// 추가 리스트를 저장하는 함수
+function saveNewList(newObj) {
+  INIT_BALANCE += newObj.history;
+
+  if (newObj.place.length === 0 || newObj.history === 0) {
+    alert("모든 칸을 채워주세요.");
+  } else {
+    HISTORY_LIST.push({ ...newObj });
+    createList({ ...newObj });
+    alert("저장 성공!");
+  }
 }
