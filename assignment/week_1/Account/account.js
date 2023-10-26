@@ -43,6 +43,52 @@ const additionalInputPrice = checkedInputContainer.querySelector(
   ".additionalInput.price"
 );
 
+// 수입, 지출 내역 만들기
+HISTORY_LIST.map((list) => {
+  INIT_BALANCE += list.history;
+  createList(list);
+});
+accountArticle.appendChild(accountUl);
+assetValue.innerHTML = INIT_BALANCE.toLocaleString();
+
+// "x" 버튼 클릭 시, 리스트 삭제 기능
+const accountLi = accountUl.querySelectorAll(".accountLi");
+accountLi.forEach((li) => {
+  const delBtn = li.querySelector(".delBtn");
+
+  delBtn.addEventListener("click", () => {
+    const modal = document.querySelector(".modal.delete");
+    const listDelBtn = modal.querySelector(".listDelBtn");
+    const cancelBtn = modal.querySelector(".cancelBtn");
+    const clickedHistory = li.querySelector(".history");
+    let clickedArr = [];
+
+    displayModal(modal);
+
+    // "삭제" 클릭 시, 모달이 화면에서 사라지고 "x" 버튼 클릭했던 리스트 삭제
+    listDelBtn.addEventListener("click", () => {
+      deleteModal(modal);
+      reflectAccount(clickedArr, clickedHistory);
+      li.remove();
+    });
+
+    // "취소" 클릭 시, 모달만 화면에서 사라짐
+    cancelBtn.addEventListener("click", () => {
+      deleteModal(modal);
+      clickedArr.push(clickedHistory.innerHTML);
+    });
+  });
+});
+
+// 리스트 추가 버튼 클릭 시 작동
+addBtn.addEventListener("click", () => {
+  const footer = document.querySelector("footer");
+  const modal = document.querySelector(".modal.add");
+  footer.style.display = "none";
+  displayModal(modal);
+  createOptions();
+});
+
 // 추가 리스트 가격 입력 기능
 additionalInputPrice.addEventListener("keyup", function (e) {
   let value = e.target.value;
@@ -61,14 +107,6 @@ additionalInputPrice.addEventListener("keyup", function (e) {
 modalInput.forEach((input) => {
   checkedOnlyOne(input);
 });
-
-// 수입, 지출 내역 만들기
-HISTORY_LIST.map((list) => {
-  INIT_BALANCE += list.history;
-  createList(list);
-});
-accountArticle.appendChild(accountUl);
-assetValue.innerHTML = INIT_BALANCE.toLocaleString();
 
 // 추가 리스트 저장 버튼 클릭 시 동작
 listSaveBtn.addEventListener("click", () => {
@@ -111,44 +149,6 @@ listSaveBtn.addEventListener("click", () => {
 
   accountArticle.appendChild(accountUl);
   assetValue.innerHTML = INIT_BALANCE.toLocaleString();
-});
-
-// "x" 버튼 클릭 시, 리스트 삭제 기능
-const accountLi = accountUl.querySelectorAll(".accountLi");
-accountLi.forEach((li) => {
-  const delBtn = li.querySelector(".delBtn");
-
-  delBtn.addEventListener("click", () => {
-    const modal = document.querySelector(".modal.delete");
-    const listDelBtn = modal.querySelector(".listDelBtn");
-    const cancelBtn = modal.querySelector(".cancelBtn");
-    const clickedHistory = li.querySelector(".history");
-    let clickedArr = [];
-
-    displayModal(modal);
-
-    // "삭제" 클릭 시, 모달이 화면에서 사라지고 "x" 버튼 클릭했던 리스트 삭제
-    listDelBtn.addEventListener("click", () => {
-      deleteModal(modal);
-      reflectAccount(clickedArr, clickedHistory);
-      li.remove();
-    });
-
-    // "취소" 클릭 시, 모달만 화면에서 사라짐
-    cancelBtn.addEventListener("click", () => {
-      deleteModal(modal);
-      clickedArr.push(clickedHistory.innerHTML);
-    });
-  });
-});
-
-// 리스트 추가 버튼 클릭 시 작동
-addBtn.addEventListener("click", () => {
-  const footer = document.querySelector("footer");
-  const modal = document.querySelector(".modal.add");
-  footer.style.display = "none";
-  displayModal(modal);
-  createOptions();
 });
 
 // 하단모달 "닫기" 버튼 클릭 시 작동
@@ -278,7 +278,6 @@ function checkedOnlyOne(input) {
 // 추가 리스트를 저장하는 함수
 function saveNewList(newObj) {
   INIT_BALANCE += newObj.history;
-
   if (newObj.place.length === 0 || newObj.history === 0) {
     alert("모든 칸을 채워주세요.");
   } else {
