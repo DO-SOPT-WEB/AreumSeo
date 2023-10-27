@@ -201,7 +201,7 @@ function filterList(checkbox, notFilteredList) {
   });
 }
 
-  // "x" 버튼 클릭 시, 리스트 삭제 함수
+// "x" 버튼 클릭 시, 리스트 삭제 함수
 function deleteList() {
   const accountLi = accountUl.querySelectorAll(".accountLi");
   accountLi.forEach((li) => {
