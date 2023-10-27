@@ -150,6 +150,18 @@ listSaveBtn.addEventListener("click", () => {
     saveNewList(newObj);
   }
 
+  // 모든 input 값을 초기화
+  categorySelect.selectedIndex = 0;
+
+  checkedInputContainer.querySelector(
+    "input[type=checkbox][id='modalIncomeBox']"
+  ).checked = true;
+  checkedInputContainer.querySelector(
+    "input[type=checkbox][id='modalExpensesBox']"
+  ).checked = false;
+  checkedInputContainer.querySelector(".additionalInput.price").value = "";
+  checkedInputContainer.querySelector(".additionalInput.contents").value = "";
+
   accountArticle.appendChild(accountUl);
   assetValue.innerHTML = INIT_BALANCE.toLocaleString();
 });
@@ -273,13 +285,13 @@ function deleteOptions() {
 // 체크박스의 선택 가능 개수를 한 개로 제한하는 함수
 function checkedOnlyOne(input) {
   const modalIncomeBox = document.getElementById("modalIncomeBox");
-  const modalExpensesBtn = document.getElementById("modalExpensesBtn");
+  const modalExpensesBox = document.getElementById("modalExpensesBox");
 
   input.addEventListener("click", () => {
     if (input.checked) {
       if (input === modalIncomeBox) {
-        modalExpensesBtn.checked = false;
-      } else if (input === modalExpensesBtn) {
+        modalExpensesBox.checked = false;
+      } else if (input === modalExpensesBox) {
         modalIncomeBox.checked = false;
       }
     }
