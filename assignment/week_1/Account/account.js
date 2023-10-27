@@ -172,7 +172,7 @@ function createList(list) {
 
   const createdHistory = document.createElement("p");
   // toLocaleString(): 숫자 자릿수에 따라 콤마(,) 추가
-  createdHistory.innerHTML = list.history;
+  createdHistory.innerHTML = list.history.toLocaleString();
 
   displayAccount(list, createdHistory);
 
