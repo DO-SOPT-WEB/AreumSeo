@@ -100,31 +100,20 @@ listSaveBtn.addEventListener("click", () => {
     ".additionalInput.contents"
   ).value;
 
-  // 수입 리스트 추가
-  if (checkedInput === "income") {
-    const newObj = {
-      id: HISTORY_LIST.length + 1,
-      category: selectedOption,
-      place: additionalContents,
-      history: Number(additionalPrice),
-    };
+  const newObj = checkedInput === "income" ? {
+    id: HISTORY_LIST.length + 1,
+    category: selectedOption,
+    place: additionalContents,
+    history: Number(additionalPrice),
+  } : {
+    id: HISTORY_LIST.length + 1,
+    category: selectedOption,
+    place: additionalContents,
+    history: -additionalPrice,
+  };
 
-    saveNewList(newObj);
-    calcMyAccount();
-  }
-
-  // 지출 리스트 추가
-  else {
-    const newObj = {
-      id: HISTORY_LIST.length + 1,
-      category: selectedOption,
-      place: additionalContents,
-      history: -additionalPrice,
-    };
-
-    saveNewList(newObj);
-    calcMyAccount();
-  }
+  saveNewList(newObj);
+  calcMyAccount();
 
   accountArticle.appendChild(accountUl);
   assetValue.innerHTML = INIT_BALANCE.toLocaleString();
