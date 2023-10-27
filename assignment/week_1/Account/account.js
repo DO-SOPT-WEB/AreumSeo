@@ -254,8 +254,6 @@ function reflectAccount(clickedArr, clickedHistory) {
     clickedNum < 0 ? (expenses -= clickedNum) : (income -= clickedNum);
   }
 
-  console.log(clickedArr);
-
   incomeValue.innerHTML = income.toLocaleString();
   expensesValue.innerHTML = Math.abs(expenses).toLocaleString();
   assetValue.innerHTML = INIT_BALANCE.toLocaleString();
