@@ -47,9 +47,9 @@ const expensesBox = accountArticle.querySelector("#expensesBox");
 
 // 수입, 지출 내역 만들기
 HISTORY_LIST.map((list) => {
-  INIT_BALANCE += list.history;
   createList(list);
 });
+calcMyAccount();
 accountArticle.appendChild(accountUl);
 assetValue.innerHTML = INIT_BALANCE.toLocaleString();
 
@@ -109,6 +109,7 @@ listSaveBtn.addEventListener("click", () => {
     };
 
     saveNewList(newObj);
+    calcMyAccount();
   }
 
   // 지출 리스트 추가
@@ -121,7 +122,9 @@ listSaveBtn.addEventListener("click", () => {
     };
 
     saveNewList(newObj);
+    calcMyAccount();
   }
+
   accountArticle.appendChild(accountUl);
   assetValue.innerHTML = INIT_BALANCE.toLocaleString();
 
@@ -184,8 +187,8 @@ function createList(list) {
   accountUl.appendChild(createdLi);
 }
 
-// "x" 버튼 클릭 시 리스트 삭제 함수
 function deleteList() {
+  // "x" 버튼 클릭 시, 리스트 삭제 기능
   const accountLi = accountUl.querySelectorAll(".accountLi");
   accountLi.forEach((li) => {
     const delBtn = li.querySelector(".delBtn");
@@ -251,6 +254,10 @@ function reflectAccount(clickedArr, clickedHistory) {
   incomeValue.innerHTML = income.toLocaleString();
   expensesValue.innerHTML = Math.abs(expenses).toLocaleString();
   assetValue.innerHTML = INIT_BALANCE.toLocaleString();
+}
+
+function calcMyAccount() {
+  INIT_BALANCE = income + expenses;
 }
 
 // 모달을 보여주는 함수
@@ -319,7 +326,6 @@ function addList(e) {
 
 // 추가 리스트를 저장하는 함수
 function saveNewList(newObj) {
-  INIT_BALANCE += newObj.history;
   if (newObj.place.length === 0 || newObj.history === 0) {
     alert("모든 칸을 채워주세요.");
   } else {
