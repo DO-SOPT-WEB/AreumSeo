@@ -53,34 +53,7 @@ HISTORY_LIST.map((list) => {
 accountArticle.appendChild(accountUl);
 assetValue.innerHTML = INIT_BALANCE.toLocaleString();
 
-// "x" 버튼 클릭 시, 리스트 삭제 기능
-const accountLi = accountUl.querySelectorAll(".accountLi");
-accountLi.forEach((li) => {
-  const delBtn = li.querySelector(".delBtn");
-
-  delBtn.addEventListener("click", () => {
-    const modal = document.querySelector(".modal.delete");
-    const listDelBtn = modal.querySelector(".listDelBtn");
-    const cancelBtn = modal.querySelector(".cancelBtn");
-    const clickedHistory = li.querySelector(".history");
-    let clickedArr = [];
-
-    displayModal(modal);
-
-    // "삭제" 클릭 시, 모달이 화면에서 사라지고 "x" 버튼 클릭했던 리스트 삭제
-    listDelBtn.addEventListener("click", () => {
-      deleteModal(modal);
-      reflectAccount(clickedArr, clickedHistory);
-      li.remove();
-    });
-
-    // "취소" 클릭 시, 모달만 화면에서 사라짐
-    cancelBtn.addEventListener("click", () => {
-      deleteModal(modal);
-      clickedArr.push(clickedHistory.innerHTML);
-    });
-  });
-});
+deleteList();
 
 // 수입 필터링
 incomeBox.addEventListener("click", () => {
@@ -149,6 +122,10 @@ listSaveBtn.addEventListener("click", () => {
 
     saveNewList(newObj);
   }
+  accountArticle.appendChild(accountUl);
+  assetValue.innerHTML = INIT_BALANCE.toLocaleString();
+
+  deleteList();
 
   // 모든 input 값을 초기화
   categorySelect.selectedIndex = 0;
@@ -161,9 +138,6 @@ listSaveBtn.addEventListener("click", () => {
   ).checked = false;
   checkedInputContainer.querySelector(".additionalInput.price").value = "";
   checkedInputContainer.querySelector(".additionalInput.contents").value = "";
-
-  accountArticle.appendChild(accountUl);
-  assetValue.innerHTML = INIT_BALANCE.toLocaleString();
 });
 
 // 하단모달 "닫기" 버튼 클릭 시 작동
@@ -208,6 +182,37 @@ function createList(list) {
   createdLi.appendChild(createdDelBtn);
 
   accountUl.appendChild(createdLi);
+}
+
+// "x" 버튼 클릭 시 리스트 삭제 함수
+function deleteList() {
+  const accountLi = accountUl.querySelectorAll(".accountLi");
+  accountLi.forEach((li) => {
+    const delBtn = li.querySelector(".delBtn");
+
+    delBtn.addEventListener("click", () => {
+      const modal = document.querySelector(".modal.delete");
+      const listDelBtn = modal.querySelector(".listDelBtn");
+      const cancelBtn = modal.querySelector(".cancelBtn");
+      const clickedHistory = li.querySelector(".history");
+      let clickedArr = [];
+
+      displayModal(modal);
+
+      // "삭제" 클릭 시, 모달이 화면에서 사라지고 "x" 버튼 클릭했던 리스트 삭제
+      listDelBtn.addEventListener("click", () => {
+        deleteModal(modal);
+        reflectAccount(clickedArr, clickedHistory);
+        li.remove();
+      });
+
+      // "취소" 클릭 시, 모달만 화면에서 사라짐
+      cancelBtn.addEventListener("click", () => {
+        deleteModal(modal);
+        clickedArr.push(clickedHistory.innerHTML);
+      });
+    });
+  });
 }
 
 // 수입과 지출을 화면에 띄워주는 함수
