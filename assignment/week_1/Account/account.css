@@ -312,6 +312,17 @@ footer > button {
   align-items: end;
 }
 
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+
 .bottomModal {
   display: flex;
   flex-direction: column;
@@ -327,6 +338,8 @@ footer > button {
   background-color: #b1d3c5;
 
   font-size: 1.5rem;
+
+  animation: fadeInUp 0.7s;
 }
 
 .checkdInputContainer {
