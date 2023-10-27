@@ -188,8 +188,32 @@ function createList(list) {
   accountUl.appendChild(createdLi);
 }
 
+// 수입과 지출을 화면에 띄워주는 함수
+function displayAccount(list, createdHistory) {
+  // 수입인 경우, "className = income"
+  // 지출인 경우, "className = expenses"
+  if (list.history < 0) {
+    createdHistory.classList.add("expenses");
+    expenses += list.history;
+  } else {
+    createdHistory.classList.add("income");
+    income += list.history;
+  }
+
+  incomeValue.innerHTML = income.toLocaleString();
+  expensesValue.innerHTML = Math.abs(expenses).toLocaleString();
+}
+
+// 수입, 지출 필터링 함수
+function filterList(checkbox, notFilteredList) {
+  notFilteredList.forEach((element) => {
+    element.parentNode.style.display =
+      checkbox.checked === true ? "flex" : "none";
+  });
+}
+
+  // "x" 버튼 클릭 시, 리스트 삭제 함수
 function deleteList() {
-  // "x" 버튼 클릭 시, 리스트 삭제 기능
   const accountLi = accountUl.querySelectorAll(".accountLi");
   accountLi.forEach((li) => {
     const delBtn = li.querySelector(".delBtn");
@@ -216,30 +240,6 @@ function deleteList() {
         clickedArr.push(clickedHistory.innerHTML);
       });
     });
-  });
-}
-
-// 수입과 지출을 화면에 띄워주는 함수
-function displayAccount(list, createdHistory) {
-  // 수입인 경우, "className = income"
-  // 지출인 경우, "className = expenses"
-  if (list.history < 0) {
-    createdHistory.classList.add("expenses");
-    expenses += list.history;
-  } else {
-    createdHistory.classList.add("income");
-    income += list.history;
-  }
-
-  incomeValue.innerHTML = income.toLocaleString();
-  expensesValue.innerHTML = Math.abs(expenses).toLocaleString();
-}
-
-// 수입, 지출 필터링 함수
-function filterList(checkbox, notFilteredList) {
-  notFilteredList.forEach((element) => {
-    element.parentNode.style.display =
-      checkbox.checked === true ? "flex" : "none";
   });
 }
 
