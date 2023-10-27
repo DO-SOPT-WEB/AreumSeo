@@ -47,6 +47,7 @@ const expensesBox = accountArticle.querySelector("#expensesBox");
 
 // 수입, 지출 내역 만들기
 HISTORY_LIST.map((list) => {
+  INIT_BALANCE += list.history;
   createList(list);
 });
 calcMyAccount();
@@ -246,10 +247,14 @@ function filterList(checkbox, notFilteredList) {
 function reflectAccount(clickedArr, clickedHistory) {
   clickedArr.push(clickedHistory.innerHTML);
   if (clickedArr.length === 1) {
-    INIT_BALANCE -= clickedArr[0];
+    // 계산할 수 있도록 "," 빼줌
+    const clickedNum = clickedArr[0].replaceAll(",", "");
+    INIT_BALANCE -= clickedNum;
 
-    clickedArr[0] < 0 ? (expenses -= clickedArr[0]) : (income -= clickedArr[0]);
+    clickedNum < 0 ? (expenses -= clickedNum) : (income -= clickedNum);
   }
+
+  console.log(clickedArr);
 
   incomeValue.innerHTML = income.toLocaleString();
   expensesValue.innerHTML = Math.abs(expenses).toLocaleString();
