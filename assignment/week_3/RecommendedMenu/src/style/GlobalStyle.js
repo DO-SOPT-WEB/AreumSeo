@@ -17,6 +17,12 @@ body {
     background-color: ${({ theme }) => theme.colors.lightGreen};
     font-family: 'UhBeeSe_hyun';
 }
+
+button {
+    border: none;
+    
+    font-family: 'UhBeeSe_hyun';
+}
 `;
 
 export default GlobalStyle;
