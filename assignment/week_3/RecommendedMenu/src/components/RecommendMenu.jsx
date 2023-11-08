@@ -1,11 +1,16 @@
 import { useEffect } from "react";
+import RandomRecommendation from "./RandomRecommendation";
+import TasteRecommendation from "./TasteRecommendation";
 
 const RecommendMenu = (props) => {
+  const category = props.category;
+  const step = props.step;
+
   useEffect(() => {
-    props.setStep(1);
+    category === "랜덤 추천" ? props.setStep(4) : props.setStep(1);
   }, []);
 
-  return <div></div>;
+  return step === 4 ? <RandomRecommendation /> : <TasteRecommendation />;
 };
 
 export default RecommendMenu;
