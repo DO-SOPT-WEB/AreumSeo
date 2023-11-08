@@ -1,11 +1,20 @@
+import { useState } from "react";
 import styled from "styled-components";
+import OnBoarding from "./OnBoarding";
 
-const StartRecommend = (selectedCategory) => {
-  const category = selectedCategory.selectedCategory;
+const StartRecommend = (props) => {
+  const category = props.selectedCategory;
+
+  const [isResetClicked, setIsResetClicked] = useState(false);
+  const clickResetHandler = () => {
+    setIsResetClicked(true);
+    props.setSelectedCategory(false);
+  };
 
   return (
     <>
-      <St.ResetBtn>처음으로</St.ResetBtn>
+      <St.ResetBtn onClick={clickResetHandler}>처음으로</St.ResetBtn>
+      {isResetClicked && <OnBoarding />}
 
       <St.CategoryContainer>
         <St.Category>{category}</St.Category>

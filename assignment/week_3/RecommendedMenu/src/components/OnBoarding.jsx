@@ -13,7 +13,7 @@ const OnBoarding = () => {
       </St.SelectCategoryHeader>
 
       {selectedCategory ? (
-        <StartRecommend selectedCategory={selectedCategory} />
+        <StartRecommend selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
       ) : (
         <SelectCategory setSelectedCategory={setSelectedCategory} />
       )}
