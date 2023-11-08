@@ -11,6 +11,7 @@ const StartRecommend = (props) => {
   const clickResetHandler = () => {
     setIsResetClicked(true);
     props.setSelectedCategory(false);
+    props.setStep(0);
   };
 
   useEffect(() => {
