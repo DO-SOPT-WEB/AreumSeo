@@ -11,6 +11,7 @@ const colors = {
   darkGreen: "#2D4849",
   lightPink: "#ffcad6",
   darkPink: "#d03c5a",
+  lightBlue: "#A9E0EB",
 };
 
 const font = {
