@@ -5,11 +5,7 @@ import { useEffect, useState } from "react";
 
 const Step1 = (props) => {
   const step = props.step;
-  const [clickedCategory, setClickedCategory] = useState("");
-
-  const clickedCategoryHandler = (e) => {
-    setClickedCategory(e.target.innerHTML);
-  };
+  const [clickedFirstCategory, setClickedFirstCategory] = useState("");
 
   const clickedPrevHandler = () => {
     if (step === 1) {
@@ -19,7 +15,7 @@ const Step1 = (props) => {
   };
 
   const clickedNextHandler = () => {
-    if (clickedCategory.length > 0) {
+    if (clickedFirstCategory.length > 0) {
       props.setStep(step + 1);
     }
   };
@@ -37,19 +33,38 @@ const Step1 = (props) => {
   ) : (
     <St.Container>
       <St.Step>{step}/3</St.Step>
-      {step === 2 ? (
-        <Step2 setStep={props.setStep} clickedCategory={clickedCategory} />
-      ) : (
-        <St.CategoryContainer onClick={(e) => clickedCategoryHandler(e)}>
-          <St.Category>한식</St.Category>
-          <St.Category>일식</St.Category>
-          <St.Category>중식</St.Category>
+      {step === 1 && (
+        <St.CategoryContainer
+          onClick={(e) => setClickedFirstCategory(e.target.innerHTML)}
+        >
+          <St.Category $isPicked={clickedFirstCategory === "한식"}>
+            한식
+          </St.Category>
+          <St.Category $isPicked={clickedFirstCategory === "일식"}>
+            일식
+          </St.Category>
+          <St.Category $isPicked={clickedFirstCategory === "중식"}>
+            중식
+          </St.Category>
         </St.CategoryContainer>
+      )}
+      {step === 2 && (
+        <Step2
+          setStep={props.setStep}
+          clickedFirstCategory={clickedFirstCategory}
+        />
       )}
 
       <St.BtnContainer>
-        <St.Button onClick={clickedPrevHandler}>이전으로</St.Button>
-        <St.Button onClick={clickedNextHandler}>다음으로</St.Button>
+        <St.Button onClick={clickedPrevHandler} $isActivated={true}>
+          이전으로
+        </St.Button>
+        <St.Button
+          onClick={clickedNextHandler}
+          $isActivated={clickedFirstCategory.length > 0}
+        >
+          다음으로
+        </St.Button>
       </St.BtnContainer>
     </St.Container>
   );
@@ -84,6 +99,10 @@ const St = {
     border-radius: 1rem;
 
     font-size: 1.3rem;
+    color: ${({ $isPicked, theme }) =>
+      $isPicked ? theme.colors.white : "black"};
+    background-color: ${({ $isPicked, theme }) =>
+      $isPicked ? theme.colors.darkPink : theme.colors.white};
 
     &:hover {
       border: solid 0.3rem ${({ theme }) => theme.colors.darkPink};
@@ -102,7 +121,7 @@ const St = {
     font-size: 1rem;
     font-weight: bold;
     color: #000;
-
+    opacity: ${(props) => (props.$isActivated ? 1 : 0.5)};
     background-color: ${({ theme }) => theme.colors.lightBlue};
 
     &:hover {
