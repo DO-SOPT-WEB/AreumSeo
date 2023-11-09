@@ -1,16 +1,20 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const Step2 = (props) => {
+  const [clickedSecondCategory, setClickedSecondCategory] = useState("");
+
   useEffect(() => {
     props.setStep(2);
   }, []);
-  
+
   return (
-    <St.CategoryContainer>
-      <St.Category onClick={() => console.log("밥")}>밥</St.Category>
-      <St.Category onClick={() => console.log("면")}>면</St.Category>
-      <St.Category onClick={() => console.log("고/해")}>
+    <St.CategoryContainer
+      onClick={(e) => setClickedSecondCategory(e.target.innerHTML)}
+    >
+      <St.Category $isPicked={clickedSecondCategory === "밥"}>밥</St.Category>
+      <St.Category $isPicked={clickedSecondCategory === "면"}>면</St.Category>
+      <St.Category $isPicked={clickedSecondCategory === "고기/해산물"}>
         고기/해산물
       </St.Category>
     </St.CategoryContainer>
@@ -34,6 +38,10 @@ const St = {
     border-radius: 1rem;
 
     font-size: 1.3rem;
+    color: ${({ $isPicked, theme }) =>
+      $isPicked ? theme.colors.white : "black"};
+    background-color: ${({ $isPicked, theme }) =>
+      $isPicked ? theme.colors.darkPink : theme.colors.white};
 
     &:hover {
       border: solid 0.3rem ${({ theme }) => theme.colors.darkPink};
