@@ -45,7 +45,7 @@ const St = {
     justify-content: center;
     align-items: center;
 
-    margin: 5rem 7rem;
+    margin: 3rem 7rem;
     padding: 2rem;
     border-radius: 3rem;
 
