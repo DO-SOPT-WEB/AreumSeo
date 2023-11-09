@@ -27,6 +27,7 @@ const StartRecommend = (props) => {
         <RecommendMenu
           category={props.selectedCategory}
           setStep={props.setStep}
+          setIsStartClicked={setIsStartClicked}
           step={props.step}
         />
       ) : (

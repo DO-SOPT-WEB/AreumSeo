@@ -10,7 +10,7 @@ const RecommendMenu = (props) => {
     category === "랜덤 추천" ? props.setStep(4) : props.setStep(1);
   }, []);
 
-  return step === 4 ? <RandomRecommendation /> : <TasteRecommendation />;
+  return step === 4 ? <RandomRecommendation setIsStartClicked={props.setIsStartClicked} /> : <TasteRecommendation setIsStartClicked={props.setIsStartClicked}/>;
 };
 
 export default RecommendMenu;
