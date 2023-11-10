@@ -23,7 +23,7 @@ const ShowSelectedCategory = (props) => {
   );
 };
 const St = {
-  CategoryContainer: styled.div`
+  CategoryContainer: styled.article`
     display: flex;
     justify-content: center;
     align-items: center;
