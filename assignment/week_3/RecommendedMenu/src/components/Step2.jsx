@@ -1,21 +1,28 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
 
 const Step2 = (props) => {
-  const [clickedSecondCategory, setClickedSecondCategory] = useState("");
+  const clickedSecondCategory = props.clickedSecondCategory;
 
   useEffect(() => {
     props.setStep(2);
+    props.setIsActivated(false);
+    if (clickedSecondCategory) {
+      props.setIsActivated(true);
+    }
   }, []);
 
   return (
     <St.CategoryContainer
-      onClick={(e) => setClickedSecondCategory(e.target.innerHTML)}
+      onClick={(e) => {
+        props.setClickedSecondCategory(e.target.innerHTML);
+        props.setIsActivated(true);
+      }}
     >
       <St.Category $isPicked={clickedSecondCategory === "밥"}>밥</St.Category>
       <St.Category $isPicked={clickedSecondCategory === "면"}>면</St.Category>
-      <St.Category $isPicked={clickedSecondCategory === "고기/해산물"}>
-        고기/해산물
+      <St.Category $isPicked={clickedSecondCategory === "고기/해물"}>
+        고기/해물
       </St.Category>
     </St.CategoryContainer>
   );
