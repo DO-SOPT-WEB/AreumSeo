@@ -2,20 +2,26 @@ import styled from "styled-components";
 import Step2 from "./Step2";
 import TasteRecommendation from "./TasteRecommendation";
 import { useEffect, useState } from "react";
+import Step3 from "./Step3";
+import Recommendation from "./Recommendation";
 
 const Step1 = (props) => {
   const step = props.step;
+  const [isActivated, setIsActivated] = useState(false);
   const [clickedFirstCategory, setClickedFirstCategory] = useState("");
+  const [clickedSecondCategory, setClickedSecondCategory] = useState("");
+  const [clickedThirdCategory, setClickedThirdCategory] = useState("");
 
   const clickedPrevHandler = () => {
     if (step === 1) {
       props.setIsStartClicked(false);
     }
     props.setStep(step - 1);
+    setIsActivated(true);
   };
 
   const clickedNextHandler = () => {
-    if (clickedFirstCategory.length > 0) {
+    if (isActivated) {
       props.setStep(step + 1);
     }
   };
@@ -30,12 +36,24 @@ const Step1 = (props) => {
       step={step}
       setIsStartClicked={props.setIsStartClicked}
     />
+  ) : step === 4 ? (
+    <Recommendation
+      category={props.category}
+      setStep={props.setStep}
+      clickedFirstCategory={clickedFirstCategory}
+      clickedSecondCategory={clickedSecondCategory}
+      clickedThirdCategory={clickedThirdCategory}
+      setIsStartClicked={props.setIsStartClicked}
+    />
   ) : (
     <St.Container>
       <St.Step>{step}/3</St.Step>
       {step === 1 && (
         <St.CategoryContainer
-          onClick={(e) => setClickedFirstCategory(e.target.innerHTML)}
+          onClick={(e) => {
+            setClickedFirstCategory(e.target.innerHTML);
+            setIsActivated(true);
+          }}
         >
           <St.Category $isPicked={clickedFirstCategory === "한식"}>
             한식
@@ -51,7 +69,18 @@ const Step1 = (props) => {
       {step === 2 && (
         <Step2
           setStep={props.setStep}
-          clickedFirstCategory={clickedFirstCategory}
+          setIsActivated={setIsActivated}
+          clickedSecondCategory={clickedSecondCategory}
+          setClickedSecondCategory={setClickedSecondCategory}
+        />
+      )}
+
+      {step === 3 && (
+        <Step3
+          setStep={props.setStep}
+          setIsActivated={setIsActivated}
+          clickedThirdCategory={clickedThirdCategory}
+          setClickedThirdCategory={setClickedThirdCategory}
         />
       )}
 
@@ -59,10 +88,7 @@ const Step1 = (props) => {
         <St.Button onClick={clickedPrevHandler} $isActivated={true}>
           이전으로
         </St.Button>
-        <St.Button
-          onClick={clickedNextHandler}
-          $isActivated={clickedFirstCategory.length > 0}
-        >
+        <St.Button onClick={clickedNextHandler} $isActivated={isActivated}>
           다음으로
         </St.Button>
       </St.BtnContainer>
