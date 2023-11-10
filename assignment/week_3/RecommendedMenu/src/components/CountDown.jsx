@@ -1,19 +1,26 @@
 import styled from "styled-components";
 import Recommendation from "./Recommendation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const CountDown = (props) => {
   const category = props.category;
   const [time, setTime] = useState(3);
   const INTERVAL = 1000;
 
+  // useRef(): setState 값이 변하면 렌더링이 발생함. useRef의 current를 사용하면 current 값이 변하더라도 리렌더링되지 않기 때문에 렌더링 최적화를 이룰 수 있음.
+  const timer = useRef(0);
+
+  // setTimeout(): 두 번째 인자로 전달받은 시간이 지나면 한 번만 동작, 타이머 만료 후 첫 번째 인자로 전달받은 콜백함수를 호출함.
+  // setInterval(): 두 번째 인자로 전달받은 시간을 간격으로 동작, 첫 번째 인자인 콜백함수가 시간 간격을 두고 반복적으로 호출됨.
   useEffect(() => {
     if (time > 0) {
-      setTimeout(() => setTime(time - 1), INTERVAL);
+      timer.current = setInterval(() => {
+        setTime(time - 1);
+      }, INTERVAL);
     }
 
     return () => {
-      clearTimeout(() => setTime(time - 1), INTERVAL);
+      clearInterval(timer.current);
     };
   }, [time]);
 
