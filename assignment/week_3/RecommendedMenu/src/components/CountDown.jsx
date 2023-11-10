@@ -8,7 +8,6 @@ const CountDown = (props) => {
   const INTERVAL = 1000;
   const [timerState, dispatch] = useReducer(reducer, {
     time: 3,
-    category: "랜덤 추천",
   });
 
   // useRef(): setState 값이 변하면 렌더링이 발생함. useRef의 current를 사용하면 current 값이 변하더라도 리렌더링되지 않기 때문에 렌더링 최적화를 이룰 수 있음.
