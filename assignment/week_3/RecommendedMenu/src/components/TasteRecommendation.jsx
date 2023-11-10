@@ -9,9 +9,15 @@ const TasteRecommendation = (props) => {
     <ShowSelectedCategory
       category={category}
       setIsStartClicked={props.setIsStartClicked}
+      setStep={props.setStep}
     />
   ) : (
-    <Step1 setStep={props.setStep} step={step} setIsStartClicked={props.setIsStartClicked}/>
+    <Step1
+      setStep={props.setStep}
+      step={step}
+      setIsStartClicked={props.setIsStartClicked}
+      category={category}
+    />
   );
 };
 

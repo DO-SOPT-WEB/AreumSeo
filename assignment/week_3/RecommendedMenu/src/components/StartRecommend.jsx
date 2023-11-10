@@ -34,6 +34,7 @@ const StartRecommend = (props) => {
         <ShowSelectedCategory
           category={props.selectedCategory}
           setIsStartClicked={setIsStartClicked}
+          setStep={props.setStep}
         />
       )}
     </>
