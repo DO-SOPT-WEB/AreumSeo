@@ -80,7 +80,7 @@ const Step = (props) => {
           이전으로
         </St.Button>
         <St.Button onClick={clickedNextHandler} $isActivated={isActivated}>
-          다음으로
+          {step === 3 ? "결과보기" : "다음으로"}
         </St.Button>
       </St.BtnContainer>
     </St.Container>
