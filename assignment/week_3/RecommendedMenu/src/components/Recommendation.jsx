@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { MENU } from "../constants/menu";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ShowSelectedCategory from "./ShowSelectedCategory";
 
-const RandomRecommendation = (props) => {
-  const category = "랜덤 추천";
+const Recommendation = (props) => {
+  const category = props.category;
   const randomNum = parseInt(Math.random() * 22 + 1);
-  const selectedMenu = MENU.filter((it) => it.id === randomNum)[0];
+  const randomSelectedMenu = MENU.filter((it) => it.id === randomNum)[0];
   const [isAgainClicked, setIsAgainClicked] = useState(false);
 
   const clickAgainHandler = () => {
@@ -14,15 +14,20 @@ const RandomRecommendation = (props) => {
     props.setIsStartClicked(false);
   };
 
+  useEffect(() => {
+    props.setStep(4);
+  }, []);
+
   return isAgainClicked ? (
     <ShowSelectedCategory
       category={category}
       setIsStartClicked={props.setIsStartClicked}
+      setStep={props.setStep}
     />
   ) : (
     <>
-      <St.MenuImg src={selectedMenu.imgURL} />
-      <St.MenuTitle>{selectedMenu.description}</St.MenuTitle>
+      <St.MenuImg src={randomSelectedMenu.imgURL} />
+      <St.MenuTitle>{randomSelectedMenu.description}</St.MenuTitle>
       <St.AgainBtn onClick={clickAgainHandler}>다시하기</St.AgainBtn>
     </>
   );
@@ -62,4 +67,4 @@ const St = {
   `,
 };
 
-export default RandomRecommendation;
+export default Recommendation;
