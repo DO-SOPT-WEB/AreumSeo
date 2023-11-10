@@ -1,5 +1,5 @@
 import ShowSelectedCategory from "./ShowSelectedCategory";
-import Step1 from "./Step1";
+import Step from "./Step";
 
 const TasteRecommendation = (props) => {
   const step = props.step;
@@ -12,7 +12,7 @@ const TasteRecommendation = (props) => {
       setStep={props.setStep}
     />
   ) : (
-    <Step1
+    <Step
       setStep={props.setStep}
       step={step}
       setIsStartClicked={props.setIsStartClicked}

@@ -1,98 +1,34 @@
 import styled from "styled-components";
-import Step2 from "./Step2";
-import TasteRecommendation from "./TasteRecommendation";
-import { useEffect, useState } from "react";
-import Step3 from "./Step3";
-import Recommendation from "./Recommendation";
+import { useEffect } from "react";
 
 const Step1 = (props) => {
-  const step = props.step;
-  const [isActivated, setIsActivated] = useState(false);
-  const [clickedFirstCategory, setClickedFirstCategory] = useState("");
-  const [clickedSecondCategory, setClickedSecondCategory] = useState("");
-  const [clickedThirdCategory, setClickedThirdCategory] = useState("");
-
-  const clickedPrevHandler = () => {
-    if (step === 1) {
-      props.setIsStartClicked(false);
-    }
-    props.setStep(step - 1);
-    setIsActivated(true);
-  };
-
-  const clickedNextHandler = () => {
-    if (isActivated) {
-      props.setStep(step + 1);
-    }
-  };
+  const clickedFirstCategory = props.clickedFirstCategory;
 
   useEffect(() => {
     props.setStep(1);
+    props.setIsActivated(false);
+    if (clickedFirstCategory) {
+      props.setIsActivated(true);
+    }
   }, []);
 
-  return step === 0 ? (
-    <TasteRecommendation
-      setStep={props.step}
-      step={step}
-      setIsStartClicked={props.setIsStartClicked}
-    />
-  ) : step === 4 ? (
-    <Recommendation
-      category={props.category}
-      setStep={props.setStep}
-      clickedFirstCategory={clickedFirstCategory}
-      clickedSecondCategory={clickedSecondCategory}
-      clickedThirdCategory={clickedThirdCategory}
-      setIsStartClicked={props.setIsStartClicked}
-    />
-  ) : (
-    <St.Container>
-      <St.Step>{step}/3</St.Step>
-      {step === 1 && (
-        <St.CategoryContainer
-          onClick={(e) => {
-            setClickedFirstCategory(e.target.innerHTML);
-            setIsActivated(true);
-          }}
-        >
-          <St.Category $isPicked={clickedFirstCategory === "한식"}>
-            한식
-          </St.Category>
-          <St.Category $isPicked={clickedFirstCategory === "일식"}>
-            일식
-          </St.Category>
-          <St.Category $isPicked={clickedFirstCategory === "중식"}>
-            중식
-          </St.Category>
-        </St.CategoryContainer>
-      )}
-      {step === 2 && (
-        <Step2
-          setStep={props.setStep}
-          setIsActivated={setIsActivated}
-          clickedSecondCategory={clickedSecondCategory}
-          setClickedSecondCategory={setClickedSecondCategory}
-        />
-      )}
-
-      {step === 3 && (
-        <Step3
-          setStep={props.setStep}
-          setIsActivated={setIsActivated}
-          clickedThirdCategory={clickedThirdCategory}
-          setClickedThirdCategory={setClickedThirdCategory}
-        />
-      )}
-
-      <St.BtnContainer>
-        <St.Button onClick={clickedPrevHandler} $isActivated={true}>
-          이전으로
-        </St.Button>
-        <St.Button onClick={clickedNextHandler} $isActivated={isActivated}>
-          다음으로
-        </St.Button>
-      </St.BtnContainer>
-    </St.Container>
+  return (
+    <St.CategoryContainer
+      onClick={(e) => {
+        props.setClickedFirstCategory(e.target.innerHTML);
+        props.setIsActivated(true);
+      }}
+    >
+      <St.Category $isPicked={clickedFirstCategory === "한식"}>
+        한식
+      </St.Category>
+      <St.Category $isPicked={clickedFirstCategory === "일식"}>
+        일식
+      </St.Category>
+      <St.Category $isPicked={clickedFirstCategory === "중식"}>
+        중식
+      </St.Category>
+    </St.CategoryContainer>
   );
 };
 
