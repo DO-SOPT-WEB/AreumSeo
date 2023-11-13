@@ -14,7 +14,7 @@ moreInfoBtn.classList.add("moreInfoBtn");
 
 // 좌측 끝으로 이동하는 기능
 prevLeftBtn.addEventListener("click", () => {
-  const prevSection = document.querySelector("section#prevSection");
+  const prevSection = document.querySelector("#prevSection");
   prevSection.scrollLeft = 0;
 });
 
