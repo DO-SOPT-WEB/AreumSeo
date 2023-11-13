@@ -22,16 +22,16 @@
       </header>
 
       <article>
-        <p class="assetValue">249,700</p>
+        <p class="assetValue"></p>
 
         <div id="detailContainer">
           <div id="plusContainer">
             <p class="detailSign">✚</p>
-            <p class="detailValue">300,000</p>
+            <p class="income detailValue"></p>
           </div>
           <div id="minusContainer">
             <p class="detailSign"><b>&nbsp;−&nbsp;</b></p>
-            <p class="detailValue">50,300</p>
+            <p class="expenses detailValue"></p>
           </div>
         </div>
       </article>
@@ -44,7 +44,7 @@
         <button>▶️</button>
       </header>
 
-      <article>
+      <article class="accountArticle">
         <header>
           <p>내역 리스트</p>
           <form>
@@ -65,57 +65,62 @@
             /><label for="expensesBox">지출</label>
           </form>
         </header>
-
-        <ul>
-          <li>
-            <p class="category">식비</p>
-            <p class="place">버거킹 문정역점 버거킹 버거킹 버거킹</p>
-            <p class="expenses history">-10,800</p>
-          </li>
-          <li>
-            <p class="category">취미</p>
-            <p class="place">포토그레이 강남 2호점</p>
-            <p class="expenses history">-5,000</p>
-          </li>
-          <li>
-            <p class="category">월급</p>
-            <p class="place">이번달 과외비</p>
-            <p class="income history">+300,000</p>
-          </li>
-          <li>
-            <p class="category">쇼핑</p>
-            <p class="place">오렌즈 강남역 지하쇼핑역점</p>
-            <p class="expenses history">-30,000</p>
-          </li>
-          <li>
-            <p class="category">식비</p>
-            <p class="place">지에스 문정역점</p>
-            <p class="expenses history">-4,500</p>
-          </li>
-          <li>
-            <p class="category">식비</p>
-            <p class="place">지에스 문정역점</p>
-            <p class="expenses history">-4,500</p>
-          </li>
-          <li>
-            <p class="category">식비</p>
-            <p class="place">지에스 문정역점</p>
-            <p class="expenses history">-4,500</p>
-          </li>
-          <li>
-            <p class="category">식비</p>
-            <p class="place">지에스 문정역점</p>
-            <p class="expenses history">-4,500</p>
-          </li>
-          <li>
-            <p class="category">식비</p>
-            <p class="place">지에스 문정역점</p>
-            <p class="expenses history">-4,500</p>
-          </li>
-        </ul>
       </article>
     </section>
 
+    <div class="modal add">
+      <div class="bottomModal">
+        <p class="bottomModalTitle">내역 추가</p>
+        <div class="checkdInputContainer">
+          <input
+            type="checkbox"
+            name="income"
+            value="income"
+            id="modalIncomeBox"
+            class="modalInput"
+            checked
+          />
+          <label for="modalIncomeBox" class="modalInputLabel">수입</label>
+          <input
+            type="checkbox"
+            name="expenses"
+            value="expenses"
+            id="modalExpensesBox"
+            class="modalInput"
+          /><label for="modalExpensesBox" class="modalInputLabel">지출</label>
+        </div>
+
+        <div class="addContainer">
+          <p class="additionalCategory">종류</p>
+          <select class="categorySelect"></select>
+        </div>
+
+        <div class="addContainer">
+          <p class="additionalPrice">금액</p>
+          <input class="additionalInput price" />
+        </div>
+
+        <div class="addContainer">
+          <p class="additionalContent">내용</p>
+          <input class="additionalInput contents" />
+        </div>
+
+        <button class="modalBtn yellowBackground save">저장하기</button>
+        <button class="modalBtn pinkBackground close">닫기</button>
+      </div>
+    </div>
+
     <footer><button type="button">✚</button></footer>
+
+    <div class="modal delete">
+      <div class="modalContent">
+        <p class="modalTitle">정말 삭제하시겠습니까?</p>
+        <div class="btnContainer">
+          <button class="listDelBtn">삭제</button>
+          <button class="cancelBtn">취소</button>
+        </div>
+      </div>
+    </div>
+    <script src="account.js"></script>
   </body>
 </html>
