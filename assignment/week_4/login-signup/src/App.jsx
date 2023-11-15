@@ -1,7 +1,15 @@
+import { ThemeProvider } from "styled-components";
+import Router from "./components/Router";
+import theme from "./style/theme";
+import { GlobalStyle } from "./style/GlobalStyle";
+
 function App() {
   return (
-   <div>4주차 과제</div>
-  )
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Router />
+    </ThemeProvider>
+  );
 }
 
-export default App
+export default App;
