@@ -1,13 +1,17 @@
 import styled, { css } from "styled-components";
 import Header from "../components/Header";
 import { SIGNUP_INPUT_CONTENTS } from "../constants/inputContents";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import API from "../libs/api";
 
 // 회원가입 페이지
 const SignupPage = () => {
   const [isExistId, setIsExistId] = useState(false);
   const [id, setId] = useState("");
+  const [pw, setPw] = useState("");
+  const [checkedPw, setCheckedPw] = useState("");
+  const [nickname, setNickname] = useState("");
+  const [disabled, setDisabled] = useState(false);
 
   const handleClickDoubleCheckBtn = () => {
     const enteredId = document.querySelector("input").value;
@@ -31,9 +35,10 @@ const SignupPage = () => {
       });
   };
 
-  // Input 값을 핸들링하는 함수
+  // input 값을 핸들링하는 함수
   const handleChangeInputContents = (e) => {
     handleIdInputContents(e);
+    handleOtherInputContents(e);
   };
 
   // 입력된 Id 값을 핸들링하는 함수
@@ -43,6 +48,35 @@ const SignupPage = () => {
       setId("");
     }
   };
+
+  // Id 외의 다른 Input 값을 핸들링하는 함수
+  const handleOtherInputContents = (e) => {
+    switch (e.target.id) {
+      // 비밀번호 Input
+      case "1":
+        setPw(e.target.value);
+        break;
+
+      // 비밀번호 확인 Input
+      case "2":
+        setCheckedPw(e.target.value);
+        break;
+
+      // 닉네임 Input
+      case "3":
+        setNickname(e.target.value);
+        break;
+      default:
+        break;
+    }
+  };
+
+  useEffect(() => {
+    // id 값이 있고, 중복되는 id가 없고, 비밀번호가 일치하고, 닉네임이 입력된 경우
+    !id && !isExistId && pw === checkedPw && nickname
+      ? setDisabled(false)
+      : setDisabled(true);
+  }, [id, isExistId, pw, checkedPw, nickname]);
 
   return (
     <St.SignupSection>
@@ -79,7 +113,7 @@ const SignupPage = () => {
         );
       })}
 
-      <St.SignupBtn>회원가입</St.SignupBtn>
+      <St.SignupBtn $disabled={disabled}>회원가입</St.SignupBtn>
     </St.SignupSection>
   );
 };
@@ -144,6 +178,8 @@ const St = {
     background-color: ${({ theme }) => theme.colors.black};
     color: ${({ theme }) => theme.colors.white};
     font-size: 1.2rem;
+
+    opacity: ${({ $disabled }) => ($disabled ? 0.3 : 1)};
   `,
 };
 
