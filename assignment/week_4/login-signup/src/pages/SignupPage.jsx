@@ -43,9 +43,10 @@ const SignupPage = () => {
 
   // 입력된 Id 값을 핸들링하는 함수
   const handleIdInputContents = (e) => {
-    // 입력된 글자가 모두 지워지면 Id 값 비워주기
+    // 입력된 글자가 모두 지워지면 Id 값 비워주기 + 중복체크 초기화
     if (e.target.value.length === 0 || e.target.value !== id) {
       setId("");
+      setIsExistId(false);
     }
   };
 
