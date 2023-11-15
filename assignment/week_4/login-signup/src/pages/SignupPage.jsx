@@ -3,9 +3,11 @@ import Header from "../components/Header";
 import { SIGNUP_INPUT_CONTENTS } from "../constants/inputContents";
 import { useEffect, useState } from "react";
 import API from "../libs/api";
+import { useNavigate } from "react-router-dom";
 
 // 회원가입 페이지
 const SignupPage = () => {
+  const navigator = useNavigate();
   const [isExistId, setIsExistId] = useState(false);
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
@@ -66,6 +68,28 @@ const SignupPage = () => {
     }
   };
 
+  const handleClickSignupBtn = () => {
+    API.post(
+      `/api/v1/members`,
+      {
+        username: `${id}`,
+        password: `${pw}`,
+        nickname: `${nickname}`,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then(() => {
+        navigator("/login");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
     // id 값이 있고, 중복되는 id가 없고, 비밀번호가 일치하고, 닉네임이 입력된 경우
     id && !isExistId && pw === checkedPw && nickname
@@ -108,7 +132,9 @@ const SignupPage = () => {
         );
       })}
 
-      <St.SignupBtn $disabled={disabled}>회원가입</St.SignupBtn>
+      <St.SignupBtn $disabled={disabled} onClick={handleClickSignupBtn}>
+        회원가입
+      </St.SignupBtn>
     </St.SignupSection>
   );
 };
