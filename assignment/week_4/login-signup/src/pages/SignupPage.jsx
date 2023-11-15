@@ -35,14 +35,8 @@ const SignupPage = () => {
       });
   };
 
-  // input 값을 핸들링하는 함수
-  const handleChangeInputContents = (e) => {
-    handleIdInputContents(e);
-    handleOtherInputContents(e);
-  };
-
   // 입력된 Id 값을 핸들링하는 함수
-  const handleIdInputContents = (e) => {
+  const handleChangeIdInputContents = (e) => {
     // 입력된 글자가 모두 지워지면 Id 값 비워주기 + 중복체크 초기화
     if (e.target.value.length === 0 || e.target.value !== id) {
       setId("");
@@ -51,7 +45,7 @@ const SignupPage = () => {
   };
 
   // Id 외의 다른 Input 값을 핸들링하는 함수
-  const handleOtherInputContents = (e) => {
+  const handleChangeOtherInputContents = (e) => {
     switch (e.target.id) {
       // 비밀번호 Input
       case "1":
@@ -74,7 +68,7 @@ const SignupPage = () => {
 
   useEffect(() => {
     // id 값이 있고, 중복되는 id가 없고, 비밀번호가 일치하고, 닉네임이 입력된 경우
-    !id && !isExistId && pw === checkedPw && nickname
+    id && !isExistId && pw === checkedPw && nickname
       ? setDisabled(false)
       : setDisabled(true);
   }, [id, isExistId, pw, checkedPw, nickname]);
@@ -92,11 +86,11 @@ const SignupPage = () => {
                 <St.InputContents
                   placeholder={content.placeholder}
                   $idInput={true}
-                  onChange={(e) => handleChangeInputContents(e)}
+                  onChange={(e) => handleChangeIdInputContents(e)}
                 />
                 <St.DoubleCheckBtn
                   $isExistId={isExistId}
-                  $default={!id}
+                  $default={!id.length}
                   onClick={handleClickDoubleCheckBtn}
                 >
                   {content.doubleBtn}
@@ -107,7 +101,7 @@ const SignupPage = () => {
                 id={idx}
                 placeholder={content.placeholder}
                 $idInput={false}
-                onChange={(e) => handleChangeInputContents(e)}
+                onChange={(e) => handleChangeOtherInputContents(e)}
               />
             )}
           </St.InputContainer>
