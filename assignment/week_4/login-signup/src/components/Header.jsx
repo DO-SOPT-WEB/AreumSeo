@@ -11,7 +11,7 @@ const Header = (props) => {
 
 const St = {
   Header: styled.header`
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   `,
   HeaderContents: styled.h1`
     font-weight: bold;
