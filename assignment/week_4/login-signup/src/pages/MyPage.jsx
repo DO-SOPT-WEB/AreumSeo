@@ -1,10 +1,11 @@
 import { Outlet } from "react-router-dom";
+import Header from "../components/Header";
 
 // 마이페이지 초기화면
 const MyPage = () => {
   return (
     <div>
-      마이 페이지
+      <Header headerContents={"MY PAGE"}/>
       <Outlet />
     </div>
   );
