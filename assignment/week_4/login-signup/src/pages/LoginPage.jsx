@@ -1,14 +1,10 @@
 import styled from "styled-components";
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
+import { LOGIN_INPUT_CONTENTS } from "../constants/inputContents";
 
 // 로그인 페이지
 const LoginPage = () => {
-  const INPUT_CONTENTS = [
-    { category: "ID", placeholder: "아이디를 입력해주세요." },
-    { category: "PASSWORD", placeholder: "비밀번호를 입력해주세요." },
-  ];
-
   const navigator = useNavigate();
   const handleClickSignupBtn = () => {
     navigator("/signup");
@@ -18,20 +14,18 @@ const LoginPage = () => {
     <St.LoginSection>
       <Header headerContents={"LOGIN"} />
 
-      {INPUT_CONTENTS.map((content, idx) => {
+      {LOGIN_INPUT_CONTENTS.map((content, idx) => {
         return (
           <St.InputContainer key={idx}>
             <St.InputCategory>{content.category}</St.InputCategory>
-            <St.InputContents
-              placeholder={content.placeholder}
-            ></St.InputContents>
+            <St.InputContents placeholder={content.placeholder} />
           </St.InputContainer>
         );
       })}
 
       <St.ButtonContainer>
         <St.LoginBtn>로그인</St.LoginBtn>
-        <St.SignUpBtn onClick={handleClickSignupBtn}>회원가입</St.SignUpBtn>
+        <St.SignupBtn onClick={handleClickSignupBtn}>회원가입</St.SignupBtn>
       </St.ButtonContainer>
     </St.LoginSection>
   );
@@ -53,7 +47,8 @@ const St = {
     font-size: 1.3rem;
   `,
   InputContents: styled.input`
-    padding: 0.5rem 3rem 0.5rem 0.3rem;
+    padding: 0.5rem;
+    width: 15rem;
   `,
 
   ButtonContainer: styled.div`
@@ -74,7 +69,7 @@ const St = {
     font-size: 1.2rem;
   `,
 
-  SignUpBtn: styled.button`
+  SignupBtn: styled.button`
     padding: 0.5rem 0;
 
     background-color: ${({ theme }) => theme.colors.darkPink};
