@@ -2,10 +2,10 @@ import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 @font-face {
-font-family: 'UhBeepuding';
-src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeepuding.woff') format('woff');
-font-weight: normal;
-font-style: normal;
+    font-family: 'ONE-Mobile-POP';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-POP.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
 * {
@@ -22,11 +22,16 @@ body {
     height: 100vh;
     
     background-color: ${({ theme }) => theme.colors.lightGray};
-    font-family: 'UhBeepuding';
+    color: ${({ theme }) => theme.colors.white};
+    font-family: 'ONE-Mobile-POP';
+}
+
+section {
+    background-color: ${({ theme }) => theme.colors.darkPink};
 }
 
 button {
     border: none;
-    font-family: 'UhBeepuding';
+    font-family: 'ONE-Mobile-POP';
 }
 `;
