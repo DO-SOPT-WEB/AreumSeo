@@ -2,10 +2,52 @@ import styled from "styled-components";
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
 import { LOGIN_INPUT_CONTENTS } from "../constants/inputContents";
+import API from "../libs/api";
+import { useState } from "react";
 
 // 로그인 페이지
 const LoginPage = () => {
   const navigator = useNavigate();
+
+  const [id, setId] = useState("");
+  const [pw, setPw] = useState("");
+
+  const handleChangeInputContents = (e) => {
+    switch (e.target.id) {
+      case "0":
+        setId(e.target.value);
+        break;
+      case "1":
+        setPw(e.target.value);
+        break;
+      default:
+        break;
+    }
+  };
+
+  const handleClickLoginBtn = () => {
+    console.log(pw);
+    API.post(
+      `/api/v1/members/sign-in`,
+      {
+        // request body
+        username: `${id}`,
+        password: `${pw}`,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((res) => {
+        navigator(`/mypage/${res.data.id}`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const handleClickSignupBtn = () => {
     navigator("/signup");
   };
@@ -18,13 +60,17 @@ const LoginPage = () => {
         return (
           <St.InputContainer key={idx}>
             <St.InputCategory>{content.category}</St.InputCategory>
-            <St.InputContents placeholder={content.placeholder} />
+            <St.InputContents
+              id={idx}
+              placeholder={content.placeholder}
+              onChange={(e) => handleChangeInputContents(e)}
+            />
           </St.InputContainer>
         );
       })}
 
       <St.ButtonContainer>
-        <St.LoginBtn>로그인</St.LoginBtn>
+        <St.LoginBtn onClick={handleClickLoginBtn}>로그인</St.LoginBtn>
         <St.SignupBtn onClick={handleClickSignupBtn}>회원가입</St.SignupBtn>
       </St.ButtonContainer>
     </St.LoginSection>
