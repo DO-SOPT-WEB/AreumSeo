@@ -32,28 +32,31 @@ const LoginPage = () => {
 
   // 로그인 버튼 클릭 시 동작하는 함수
   const handleClickLoginBtn = () => {
-    API.post(
-      `/api/v1/members/sign-in`,
-      {
-        // request body
-        username: `${id}`,
-        password: `${pw}`,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
+    // id와 pw가 둘 다 입력된 경우에만 api 통신
+    if (id && pw) {
+      API.post(
+        `/api/v1/members/sign-in`,
+        {
+          // request body
+          username: `${id}`,
+          password: `${pw}`,
         },
-      }
-    )
-      .then((res) => {
-        navigator(`/mypage/${res.data.id}`, {
-          state: { username: res.data.username, nickname: res.data.nickname },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+        .then((res) => {
+          navigator(`/mypage/${res.data.id}`, {
+            state: { username: res.data.username, nickname: res.data.nickname },
+          });
+        })
+        .catch((err) => {
+          setErrMsg(err.response.data.message);
+          handleIsError();
         });
-      })
-      .catch((err) => {
-        setErrMsg(err.response.data.message);
-        handleIsError();
-      });
+    }
   };
 
   // isError의 값을 바꿔주는 함수
@@ -92,7 +95,9 @@ const LoginPage = () => {
         })}
 
         <St.ButtonContainer>
-          <St.LoginBtn onClick={handleClickLoginBtn}>로그인</St.LoginBtn>
+          <St.LoginBtn onClick={handleClickLoginBtn} $disabled={!id || !pw}>
+            로그인
+          </St.LoginBtn>
           <St.SignupBtn onClick={handleClickSignupBtn}>회원가입</St.SignupBtn>
         </St.ButtonContainer>
       </St.LoginSection>
@@ -138,6 +143,8 @@ const St = {
 
   LoginBtn: styled.button`
     padding: 0.5rem 0;
+
+    opacity: ${({ $disabled }) => ($disabled ? 0.5 : 1)};
 
     background-color: ${({ theme }) => theme.colors.white};
     color: ${({ theme }) => theme.colors.darkPink};
