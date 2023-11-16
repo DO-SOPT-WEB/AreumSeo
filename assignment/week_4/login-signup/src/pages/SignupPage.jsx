@@ -71,25 +71,27 @@ const SignupPage = () => {
 
   // 회원가입 버튼 클릭 시 post하는 함수
   const handleClickSignupBtn = () => {
-    API.post(
-      `/api/v1/members`,
-      {
-        username: `${id}`,
-        password: `${pw}`,
-        nickname: `${nickname}`,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
+    if (!disabled) {
+      API.post(
+        `/api/v1/members`,
+        {
+          username: `${id}`,
+          password: `${pw}`,
+          nickname: `${nickname}`,
         },
-      }
-    )
-      .then(() => {
-        navigator("/login");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+        .then(() => {
+          navigator("/login");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   useEffect(() => {
