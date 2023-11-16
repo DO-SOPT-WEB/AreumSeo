@@ -45,7 +45,7 @@ const St = {
     gap: 1.5rem;
   `,
   UserInfo: styled.p`
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1.5rem;
     border-radius: 1rem;
 
     color: ${({ theme }) => theme.colors.darkPink};
