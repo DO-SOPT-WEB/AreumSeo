@@ -46,7 +46,9 @@ const LoginPage = () => {
       }
     )
       .then((res) => {
-        navigator(`/mypage/${res.data.id}`);
+        navigator(`/mypage/${res.data.id}`, {
+          state: { username: res.data.username, nickname: res.data.nickname },
+        });
       })
       .catch((err) => {
         setErrMsg(err.response.data.message);
