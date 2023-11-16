@@ -15,6 +15,7 @@ const SignupPage = () => {
   const [nickname, setNickname] = useState("");
   const [disabled, setDisabled] = useState(false);
 
+  // 중복체크 버튼 클릭 시 동작하는 함수
   const handleClickDoubleCheckBtn = () => {
     const enteredId = document.querySelector("input").value;
 
@@ -68,6 +69,7 @@ const SignupPage = () => {
     }
   };
 
+  // 회원가입 버튼 클릭 시 post하는 함수
   const handleClickSignupBtn = () => {
     API.post(
       `/api/v1/members`,
