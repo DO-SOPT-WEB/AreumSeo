@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { LOGIN_INPUT_CONTENTS } from "../constants/inputContents";
 import API from "../libs/api";
 import { useState } from "react";
+import Toast from "../components/modal/Toast";
+import ToastPortal from "../components/modal/ToastPortal";
 
 // 로그인 페이지
 const LoginPage = () => {
@@ -11,7 +13,10 @@ const LoginPage = () => {
 
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
+  const [isError, setIsError] = useState(false);
+  const [errMsg, setErrMsg] = useState("");
 
+  // 입력받은 id와 pw를 저장하는 함수
   const handleChangeInputContents = (e) => {
     switch (e.target.id) {
       case "0":
@@ -25,8 +30,8 @@ const LoginPage = () => {
     }
   };
 
+  // 로그인 버튼 클릭 시 동작하는 함수
   const handleClickLoginBtn = () => {
-    console.log(pw);
     API.post(
       `/api/v1/members/sign-in`,
       {
@@ -44,36 +49,58 @@ const LoginPage = () => {
         navigator(`/mypage/${res.data.id}`);
       })
       .catch((err) => {
-        console.log(err);
+        setErrMsg(err.response.data.message);
+        handleIsError();
       });
   };
 
+  // isError의 값을 바꿔주는 함수
+  const handleIsError = () => {
+    setIsError(true);
+    setTimeout(() => {
+      setIsError(false);
+    }, 2000);
+
+    return clearTimeout(() => {
+      setIsError(false);
+    });
+  };
+
+  // 회원가입 버튼 클릭 시 동작하는 함수
   const handleClickSignupBtn = () => {
     navigator("/signup");
   };
 
   return (
-    <St.LoginSection>
-      <Header headerContents={"LOGIN"} />
+    <>
+      <St.LoginSection>
+        <Header headerContents={"LOGIN"} />
 
-      {LOGIN_INPUT_CONTENTS.map((content, idx) => {
-        return (
-          <St.InputContainer key={idx}>
-            <St.InputCategory>{content.category}</St.InputCategory>
-            <St.InputContents
-              id={idx}
-              placeholder={content.placeholder}
-              onChange={(e) => handleChangeInputContents(e)}
-            />
-          </St.InputContainer>
-        );
-      })}
+        {LOGIN_INPUT_CONTENTS.map((content, idx) => {
+          return (
+            <St.InputContainer key={idx}>
+              <St.InputCategory>{content.category}</St.InputCategory>
+              <St.InputContents
+                id={idx}
+                placeholder={content.placeholder}
+                onChange={(e) => handleChangeInputContents(e)}
+              />
+            </St.InputContainer>
+          );
+        })}
 
-      <St.ButtonContainer>
-        <St.LoginBtn onClick={handleClickLoginBtn}>로그인</St.LoginBtn>
-        <St.SignupBtn onClick={handleClickSignupBtn}>회원가입</St.SignupBtn>
-      </St.ButtonContainer>
-    </St.LoginSection>
+        <St.ButtonContainer>
+          <St.LoginBtn onClick={handleClickLoginBtn}>로그인</St.LoginBtn>
+          <St.SignupBtn onClick={handleClickSignupBtn}>회원가입</St.SignupBtn>
+        </St.ButtonContainer>
+      </St.LoginSection>
+
+      {isError && (
+        <ToastPortal>
+          <Toast errMsg={errMsg} />
+        </ToastPortal>
+      )}
+    </>
   );
 };
 
