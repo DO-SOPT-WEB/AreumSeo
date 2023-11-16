@@ -1,14 +1,34 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
+import API from "../libs/api";
 
 // 유저에 따른 마이페이지
 const UserDetailPage = () => {
-  const { username, nickname } = useLocation().state;
+  const { userId } = useParams();
   const navigator = useNavigate();
+
+  const [id, setId] = useState("");
+  const [nickname, setNickname] = useState("");
 
   const handleClickLogoutBtn = () => {
     navigator("/login");
   };
+
+  useEffect(() => {
+    API.get(`/api/v1/members/${userId}`, {
+      params: {
+        memberId: `${userId}`,
+      },
+    })
+      .then((res) => {
+        setId(res.data.username);
+        setNickname(res.data.nickname);
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }, [userId]);
 
   return (
     <>
@@ -16,7 +36,7 @@ const UserDetailPage = () => {
         <St.UserImg src="../src/asset/userImg.png" />
 
         <St.UserInfoContainer>
-          <St.UserInfo>ID: {username}</St.UserInfo>
+          <St.UserInfo>ID: {id}</St.UserInfo>
           <St.UserInfo>NICKNAME: {nickname}</St.UserInfo>
         </St.UserInfoContainer>
       </St.UserDetailContainer>
