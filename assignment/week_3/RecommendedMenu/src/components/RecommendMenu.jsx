@@ -3,24 +3,23 @@ import TasteRecommendation from "./TasteRecommendation";
 import CountDown from "./CountDown";
 
 const RecommendMenu = (props) => {
-  const category = props.category;
-  const step = props.step;
+  const { category, step, setStep, setIsStartClicked } = props;
 
   useEffect(() => {
-    category === "랜덤 추천" ? props.setStep(4) : props.setStep(1);
+    category === "랜덤 추천" ? setStep(4) : setStep(1);
   }, []);
 
   return step === 4 && category === "랜덤 추천" ? (
     <CountDown
-      setIsStartClicked={props.setIsStartClicked}
+      setIsStartClicked={setIsStartClicked}
       category={category}
-      setStep={props.setStep}
+      setStep={setStep}
     />
   ) : (
     <TasteRecommendation
-      setIsStartClicked={props.setIsStartClicked}
-      setStep={props.setStep}
-      step={props.step}
+      setIsStartClicked={setIsStartClicked}
+      setStep={setStep}
+      step={step}
     />
   );
 };

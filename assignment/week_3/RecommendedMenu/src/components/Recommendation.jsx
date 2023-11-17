@@ -4,42 +4,48 @@ import { useEffect, useState } from "react";
 import ShowSelectedCategory from "./ShowSelectedCategory";
 
 const Recommendation = (props) => {
-  const category = props.category;
+  const {
+    category,
+    clickedFirstCategory,
+    clickedSecondCategory,
+    clickedThirdCategory,
+    setIsStartClicked,
+    setStep,
+  } = props;
   const randomNum = parseInt(Math.random() * 22 + 1);
   const randomSelectedMenu = MENU.filter((it) => it.id === randomNum)[0];
-  const firstCategory = props.clickedFirstCategory;
-  const secondCategory = props.clickedSecondCategory;
-  const thirdCategory = props.clickedThirdCategory;
   const filteredMenu = MENU.filter(
     (it) =>
-      it.firstCategory === firstCategory &&
-      it.secondCategory === secondCategory &&
-      it.thirdCategory === thirdCategory
+      it.firstCategory === clickedFirstCategory &&
+      it.secondCategory === clickedSecondCategory &&
+      it.thirdCategory === clickedThirdCategory
   )[0];
   const [isAgainClicked, setIsAgainClicked] = useState(false);
 
   const clickAgainHandler = () => {
     setIsAgainClicked(true);
-    props.setIsStartClicked(false);
+    setIsStartClicked(false);
   };
 
   useEffect(() => {
-    props.setStep(4);
+    setStep(4);
   }, []);
 
   return isAgainClicked ? (
     <ShowSelectedCategory
       category={category}
-      setIsStartClicked={props.setIsStartClicked}
-      setStep={props.setStep}
+      setIsStartClicked={setIsStartClicked}
+      setStep={setStep}
     />
   ) : (
     <>
       <St.MenuImg
-        src={firstCategory ? filteredMenu.imgURL : randomSelectedMenu.imgURL}
+        src={
+          clickedFirstCategory ? filteredMenu.imgURL : randomSelectedMenu.imgURL
+        }
       />
       <St.MenuTitle>
-        {firstCategory
+        {clickedFirstCategory
           ? filteredMenu.description
           : randomSelectedMenu.description}
       </St.MenuTitle>

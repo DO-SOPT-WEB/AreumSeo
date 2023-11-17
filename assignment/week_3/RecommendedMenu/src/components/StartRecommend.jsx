@@ -1,22 +1,19 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import OnBoarding from "./OnBoarding";
 import RecommendMenu from "./RecommendMenu";
 import ShowSelectedCategory from "./ShowSelectedCategory";
 
 const StartRecommend = (props) => {
+  const { setSelectedCategory, selectedCategory, setStep, step } = props;
   const [isResetClicked, setIsResetClicked] = useState(false);
   const [isStartClicked, setIsStartClicked] = useState(false);
 
   const clickResetHandler = () => {
     setIsResetClicked(true);
-    props.setSelectedCategory(false);
-    props.setStep(0);
+    setSelectedCategory(false);
+    setStep(0);
   };
-
-  useEffect(() => {
-    props.setStep(0);
-  }, []);
 
   return (
     <>
@@ -25,16 +22,16 @@ const StartRecommend = (props) => {
 
       {isStartClicked ? (
         <RecommendMenu
-          category={props.selectedCategory}
-          setStep={props.setStep}
+          category={selectedCategory}
+          setStep={setStep}
           setIsStartClicked={setIsStartClicked}
-          step={props.step}
+          step={step}
         />
       ) : (
         <ShowSelectedCategory
-          category={props.selectedCategory}
+          category={selectedCategory}
           setIsStartClicked={setIsStartClicked}
-          setStep={props.setStep}
+          setStep={setStep}
         />
       )}
     </>

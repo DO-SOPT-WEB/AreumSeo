@@ -7,7 +7,8 @@ import Step2 from "./Step2";
 import Step3 from "./Step3";
 
 const Step = (props) => {
-  const step = props.step;
+  const { step, setStep, setIsStartClicked, category } = props;
+
   const [isActivated, setIsActivated] = useState(false);
   const [clickedFirstCategory, setClickedFirstCategory] = useState("");
   const [clickedSecondCategory, setClickedSecondCategory] = useState("");
@@ -15,43 +16,43 @@ const Step = (props) => {
 
   const clickedPrevHandler = () => {
     if (step === 1) {
-      props.setIsStartClicked(false);
+      setIsStartClicked(false);
     }
-    props.setStep(step - 1);
+    setStep(step - 1);
     setIsActivated(true);
   };
 
   const clickedNextHandler = () => {
     if (isActivated) {
-      props.setStep(step + 1);
+      setStep(step + 1);
     }
   };
 
   useEffect(() => {
-    props.setStep(1);
+    setStep(1);
   }, []);
 
   return step === 0 ? (
     <TasteRecommendation
-      setStep={props.step}
+      setStep={step}
       step={step}
-      setIsStartClicked={props.setIsStartClicked}
+      setIsStartClicked={setIsStartClicked}
     />
   ) : step === 4 ? (
     <Recommendation
-      category={props.category}
-      setStep={props.setStep}
+      category={category}
+      setStep={setStep}
       clickedFirstCategory={clickedFirstCategory}
       clickedSecondCategory={clickedSecondCategory}
       clickedThirdCategory={clickedThirdCategory}
-      setIsStartClicked={props.setIsStartClicked}
+      setIsStartClicked={setIsStartClicked}
     />
   ) : (
     <St.Container>
       <St.Step>{step}/3</St.Step>
       {step === 1 && (
         <Step1
-          setStep={props.setStep}
+          setStep={setStep}
           setIsActivated={setIsActivated}
           clickedFirstCategory={clickedFirstCategory}
           setClickedFirstCategory={setClickedFirstCategory}
@@ -59,7 +60,7 @@ const Step = (props) => {
       )}
       {step === 2 && (
         <Step2
-          setStep={props.setStep}
+          setStep={setStep}
           setIsActivated={setIsActivated}
           clickedSecondCategory={clickedSecondCategory}
           setClickedSecondCategory={setClickedSecondCategory}
@@ -68,7 +69,7 @@ const Step = (props) => {
 
       {step === 3 && (
         <Step3
-          setStep={props.setStep}
+          setStep={setStep}
           setIsActivated={setIsActivated}
           clickedThirdCategory={clickedThirdCategory}
           setClickedThirdCategory={setClickedThirdCategory}
@@ -138,7 +139,7 @@ const St = {
     font-size: 1rem;
     font-weight: bold;
     color: #000;
-    opacity: ${(props) => (props.$isActivated ? 1 : 0.5)};
+    opacity: ${({ $isActivated }) => ($isActivated ? 1 : 0.5)};
     background-color: ${({ theme }) => theme.colors.lightBlue};
 
     &:hover {

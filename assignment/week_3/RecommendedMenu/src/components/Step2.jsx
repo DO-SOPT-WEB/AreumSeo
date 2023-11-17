@@ -2,21 +2,26 @@ import { useEffect } from "react";
 import styled from "styled-components";
 
 const Step2 = (props) => {
-  const clickedSecondCategory = props.clickedSecondCategory;
+  const {
+    clickedSecondCategory,
+    setClickedSecondCategory,
+    setStep,
+    setIsActivated,
+  } = props;
 
   useEffect(() => {
-    props.setStep(2);
-    props.setIsActivated(false);
+    setStep(2);
+    setIsActivated(false);
     if (clickedSecondCategory) {
-      props.setIsActivated(true);
+      setIsActivated(true);
     }
   }, []);
 
   return (
     <St.CategoryContainer
       onClick={(e) => {
-        props.setClickedSecondCategory(e.target.innerHTML);
-        props.setIsActivated(true);
+        setClickedSecondCategory(e.target.innerHTML);
+        setIsActivated(true);
       }}
     >
       <St.Category $isPicked={clickedSecondCategory === "밥"}>밥</St.Category>

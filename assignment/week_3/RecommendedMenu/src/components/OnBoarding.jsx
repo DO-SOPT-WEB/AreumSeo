@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import StartRecommend from "./StartRecommend";
 import SelectCategory from "./SelectCategory";
@@ -6,10 +6,6 @@ import SelectCategory from "./SelectCategory";
 const OnBoarding = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [step, setStep] = useState(0);
-
-  useEffect(() => {
-    setStep(0);
-  }, []);
 
   return (
     <St.Container>

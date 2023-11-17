@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 const SelectCategory = (props) => {
+  const { setSelectedCategory } = props;
   const clickCategoryHandler = (e) => {
-    props.setSelectedCategory(e.target.innerHTML);
+    setSelectedCategory(e.target.innerHTML);
   };
 
   return (

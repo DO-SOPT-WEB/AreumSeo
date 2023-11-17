@@ -2,14 +2,14 @@ import { useEffect } from "react";
 import styled from "styled-components";
 
 const ShowSelectedCategory = (props) => {
-  const category = props.category;
+  const { category, setIsStartClicked, setStep } = props;
 
   const clickStartHandler = () => {
-    props.setIsStartClicked(true);
+    setIsStartClicked(true);
   };
 
   useEffect(() => {
-    props.setStep(0);
+    setStep(0);
   }, []);
 
   return (

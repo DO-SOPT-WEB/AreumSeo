@@ -2,21 +2,26 @@ import styled from "styled-components";
 import { useEffect } from "react";
 
 const Step1 = (props) => {
-  const clickedFirstCategory = props.clickedFirstCategory;
+  const {
+    clickedFirstCategory,
+    setClickedFirstCategory,
+    setStep,
+    setIsActivated,
+  } = props;
 
   useEffect(() => {
-    props.setStep(1);
-    props.setIsActivated(false);
+    setStep(1);
+    setIsActivated(false);
     if (clickedFirstCategory) {
-      props.setIsActivated(true);
+      setIsActivated(true);
     }
   }, []);
 
   return (
     <St.CategoryContainer
       onClick={(e) => {
-        props.setClickedFirstCategory(e.target.innerHTML);
-        props.setIsActivated(true);
+        setClickedFirstCategory(e.target.innerHTML);
+        setIsActivated(true);
       }}
     >
       <St.Category $isPicked={clickedFirstCategory === "한식"}>
@@ -83,7 +88,7 @@ const St = {
     font-size: 1rem;
     font-weight: bold;
     color: #000;
-    opacity: ${(props) => (props.$isActivated ? 1 : 0.5)};
+    opacity: ${({$isActivated}) => ($isActivated ? 1 : 0.5)};
     background-color: ${({ theme }) => theme.colors.lightBlue};
 
     &:hover {

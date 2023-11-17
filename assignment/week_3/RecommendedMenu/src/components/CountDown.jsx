@@ -4,7 +4,7 @@ import Recommendation from "./Recommendation";
 import { reducer } from "../libs/reducer";
 
 const CountDown = (props) => {
-  const category = props.category;
+  const { category, setIsStartClicked, setStep } = props;
   const INTERVAL = 1000;
   const [timerState, dispatch] = useReducer(reducer, {
     time: 3,
@@ -33,9 +33,9 @@ const CountDown = (props) => {
     </St.CountContainer>
   ) : (
     <Recommendation
-      setIsStartClicked={props.setIsStartClicked}
+      setIsStartClicked={setIsStartClicked}
       category={category}
-      setStep={props.setStep}
+      setStep={setStep}
     />
   );
 };
