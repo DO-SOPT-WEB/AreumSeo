@@ -11,11 +11,8 @@ const UserDetailPage = () => {
   const [id, setId] = useState("");
   const [nickname, setNickname] = useState("");
 
-  const handleClickLogoutBtn = () => {
-    navigator("/login");
-  };
-
-  useEffect(() => {
+  // 유저 정보를 get 하는 함수
+  const getUserInfo = () => {
     API.get(`/api/v1/members/${userId}`, {
       params: {
         memberId: `${userId}`,
@@ -28,7 +25,15 @@ const UserDetailPage = () => {
       .catch((err) => {
         alert(err);
       });
-  }, [userId]);
+  };
+
+  const handleClickLogoutBtn = () => {
+    navigator("/login");
+  };
+
+  useEffect(() => {
+    getUserInfo();
+  }, []);
 
   return (
     <>

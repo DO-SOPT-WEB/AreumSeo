@@ -15,8 +15,8 @@ const SignupPage = () => {
   const [nickname, setNickname] = useState("");
   const [disabled, setDisabled] = useState(false);
 
-  // 중복체크 버튼 클릭 시 동작하는 함수
-  const handleClickDoubleCheckBtn = () => {
+  // 이미 존재하는 id인지 여부를 get 하는 함수
+  const getIsExistValue = () => {
     const enteredId = document.querySelector("input").value;
 
     API.get(`/api/v1/members/check`, {
@@ -36,6 +36,11 @@ const SignupPage = () => {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  // 중복체크 버튼 클릭 시 동작하는 함수
+  const handleClickDoubleCheckBtn = () => {
+    getIsExistValue();
   };
 
   // 입력된 Id 값을 핸들링하는 함수
@@ -69,28 +74,33 @@ const SignupPage = () => {
     }
   };
 
+  // user 정보를 post 하는 함수
+  const postUserInfo = () => {
+    API.post(
+      `/api/v1/members`,
+      {
+        username: `${id}`,
+        password: `${pw}`,
+        nickname: `${nickname}`,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then(() => {
+        navigator("/login");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   // 회원가입 버튼 클릭 시 post하는 함수
   const handleClickSignupBtn = () => {
     if (!disabled) {
-      API.post(
-        `/api/v1/members`,
-        {
-          username: `${id}`,
-          password: `${pw}`,
-          nickname: `${nickname}`,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
-        .then(() => {
-          navigator("/login");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      postUserInfo();
     }
   };
 

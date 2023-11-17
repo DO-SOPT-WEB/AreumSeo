@@ -30,30 +30,35 @@ const LoginPage = () => {
     }
   };
 
+  // 로그인 시 입력한 값을 post 하는 함수
+  const postLoginInfo = () => {
+    API.post(
+      `/api/v1/members/sign-in`,
+      {
+        // request body
+        username: `${id}`,
+        password: `${pw}`,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((res) => {
+        navigator(`/mypage/${res.data.id}`);
+      })
+      .catch((err) => {
+        setErrMsg(err.response.data.message);
+        handleIsError();
+      });
+  };
+
   // 로그인 버튼 클릭 시 동작하는 함수
   const handleClickLoginBtn = () => {
     // id와 pw가 둘 다 입력된 경우에만 api 통신
     if (id && pw) {
-      API.post(
-        `/api/v1/members/sign-in`,
-        {
-          // request body
-          username: `${id}`,
-          password: `${pw}`,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
-        .then((res) => {
-          navigator(`/mypage/${res.data.id}`);
-        })
-        .catch((err) => {
-          setErrMsg(err.response.data.message);
-          handleIsError();
-        });
+      postLoginInfo();
     }
   };
 
