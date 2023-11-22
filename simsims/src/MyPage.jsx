@@ -10,7 +10,7 @@ const MyPage = ({ setOpen }) => {
   // 유저 정보를 get 하는 함수
   const getUserInfo = () => {
     axios
-      .get(`${import.meta.env.VITE_BASE_URL}/185`)
+      .get(`http://3.39.54.196/api/v1/members/300`)
       .then((res) => {
         setId(res.data.username);
         setNickname(res.data.nickname);
@@ -29,21 +29,32 @@ const MyPage = ({ setOpen }) => {
   }, []);
 
   return (
-    <>
-      <St.UserDetailContainer>
+    <St.UserDetailSection>
+      <St.UserDetailArticle>
         <St.UserInfoContainer>
           <St.UserInfo>ID: {id}</St.UserInfo>
           <St.UserInfo>NICKNAME: {nickname}</St.UserInfo>
         </St.UserInfoContainer>
-      </St.UserDetailContainer>
+      </St.UserDetailArticle>
 
       <St.LogoutBtn onClick={handleClickLogoutBtn}>로그아웃</St.LogoutBtn>
-    </>
+    </St.UserDetailSection>
   );
 };
 
 const St = {
-  UserDetailContainer: styled.article`
+  UserDetailSection: styled.section`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 2rem 3rem;
+    border-radius: 2rem;
+
+    background-color: #cf576b;
+  `,
+  UserDetailArticle: styled.article`
     display: flex;
     justify-content: space-between;
     align-items: center;
