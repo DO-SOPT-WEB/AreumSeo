@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+// import { useQuery } from "react-query";
 import styled from "styled-components";
 import axios from "axios";
 
@@ -6,6 +7,22 @@ import axios from "axios";
 const MyPage = ({ setOpen }) => {
   const [id, setId] = useState("");
   const [nickname, setNickname] = useState("");
+
+  //   const userInfo = useQuery(
+  //     // uniqueKey
+  //     ["userId"],
+  //     // queryFunction
+  //     async () =>
+  //       await axios
+  //         .get(`http://3.39.54.196/api/v1/members/300`)
+  //         .then(({ data }) => {
+  //           setId(data.username);
+  //           setNickname(data.nickname);
+  //         })
+  //   );
+
+  //   if (userInfo.isError) return <div> {userInfo.error.message} </div>;
+  //   if (userInfo.isLoading) return <div> Loading . . . </div>;
 
   // 유저 정보를 get 하는 함수
   const getUserInfo = () => {
