@@ -5,8 +5,7 @@ import axios from "axios";
 
 // 유저에 따른 마이페이지
 const MyPage = ({ setOpen }) => {
-  const [id, setId] = useState("");
-  const [nickname, setNickname] = useState("");
+  const [response, setResponse] = useState("");
 
   //   const userInfo = useQuery(
   //     // uniqueKey
@@ -30,15 +29,13 @@ const MyPage = ({ setOpen }) => {
 
   // 유저 정보를 get 하는 함수
   const getUserInfo = () => {
-    axios
-      .get(`http://3.39.54.196/api/v1/members/300`)
-      .then((res) => {
-        setId(res.data.username);
-        setNickname(res.data.nickname);
-      })
-      .catch((err) => {
-        console.log(err);
+    try {
+      axios.get(`http://3.39.54.196/api/v1/members/300`).then((res) => {
+        setResponse(res.data);
       });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleClickLogoutBtn = () => {
@@ -53,8 +50,8 @@ const MyPage = ({ setOpen }) => {
     <St.UserDetailSection>
       <St.UserDetailArticle>
         <St.UserInfoContainer>
-          <St.UserInfo>ID: {id}</St.UserInfo>
-          <St.UserInfo>NICKNAME: {nickname}</St.UserInfo>
+          <St.UserInfo>ID: {response.username}</St.UserInfo>
+          <St.UserInfo>NICKNAME: {response.nickname}</St.UserInfo>
         </St.UserInfoContainer>
       </St.UserDetailArticle>
 
