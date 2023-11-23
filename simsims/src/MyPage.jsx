@@ -17,6 +17,7 @@ const MyPage = ({ setOpen }) => {
   //         // 회원 정보 불러오는 api: /api/v1/members
   //         // 회원가입 성공 시 부여되는 고유 id: /300
   //         .get(`http://3.39.54.196/api/v1/members/300`)
+  //         // react-query는 에러처리를 자동으로 해주기 때문에 따로 try-catch문을 작성하지 않아도 된다 !
   //         .then(({ data }) => {
   //           // api 통신 성공 시, 반환되는 데이터를 활용하여 set 함수로 상태 값 변경
   //           setResponse(data);
