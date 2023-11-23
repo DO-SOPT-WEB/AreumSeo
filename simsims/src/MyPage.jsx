@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-// import { useQuery } from "react-query";
+import { useQuery } from "react-query";
 import styled from "styled-components";
 import axios from "axios";
 
@@ -19,8 +19,7 @@ const MyPage = ({ setOpen }) => {
   //         .get(`http://3.39.54.196/api/v1/members/300`)
   //         .then(({ data }) => {
   //           // api 통신 성공 시, 반환되는 데이터를 활용하여 set 함수로 상태 값 변경
-  //           setId(data.username);
-  //           setNickname(data.nickname);
+  //           setResponse(data);
   //         })
   //   );
 
